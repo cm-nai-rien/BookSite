@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaos Book Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        :root {
+            --color-brown-dark:   #3d2409;
+            --color-brown-medium: #6b4523;
+            --color-gold:         #c4993f;
+            --color-parchment:    #f5ead8;
+            --text-primary:       #3d2409;
+            --bg-page:            #c4993f;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            font-family: "Outfit", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: left;
+            padding: 2rem 5% 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin: 0 0 10px 0;
+            font-size: clamp(2rem, 6vw, 2.2rem);
+        }
+
+        .back-link {
+            color: var(--text-primary);
+            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .back-link:hover { border-bottom-color: var(--text-primary); }
+
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto 50px auto;
+            padding: 0 5%;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .dash-widget {
+            background: var(--color-parchment);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .dash-title {
+            margin: 0 0 20px 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--color-brown-dark);
+        }
+
+        .top-list { padding-left: 20px; margin: 0; }
+        .top-list li {
+            padding: 9px 0;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed #d5c9b5;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .top-list .book-info { flex: 1; min-width: 0; }
+        .top-list .book-title { font-style: italic; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .top-list .book-author { font-size: 0.78rem; color: var(--color-brown-medium); display: block; }
+        .top-list .rating { flex-shrink: 0; font-weight: bold; color: var(--color-brown-dark); white-space: nowrap; }
+
+        .stat-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--color-brown-dark);
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-brown-medium);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Book Analytics</h1>
+        <a href="index.html" class="back-link">← Back to Books</a>
+    </header>
+
+    <div class="dashboard">
+
+        <!-- Widget: Stats Summary -->
+        <div class="dash-widget" style="flex-basis: 100%; max-width: 100%;">
+            <h3 class="dash-title">At a Glance</h3>
+            <div class="stat-row" id="stat-row"></div>
+        </div>
+
+        <!-- Widget: Top 10 -->
+        <div class="dash-widget">
+            <h3 class="dash-title">Top 10 Highest Rated</h3>
+            <ol id="top-ten-list" class="top-list"></ol>
+        </div>
+
+        <!-- Widget: Charts Column -->
+        <div style="flex: 2; display: flex; flex-direction: column; gap: 30px; min-width: 350px;">
+            <div class="dash-widget">
+                <h3 class="dash-title">Books Read Per Year</h3>
+                <canvas id="booksPerYearChart"></canvas>
+            </div>
+            <div class="dash-widget">
+                <h3 class="dash-title">Pages Read Per Year</h3>
+                <canvas id="pagesPerYearChart"></canvas>
+            </div>
+            <div class="dash-widget">
+                <h3 class="dash-title">Books by Publication Decade</h3>
+                <div style="height: 300px;">
+                    <canvas id="decadePieChart"></canvas>
+                </div>
+            </div>
+            <div class="dash-widget" id="genre-widget" style="display:none;">
+                <h3 class="dash-title">Top Genres / Shelves</h3>
+                <canvas id="genreChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const PALETTE = [
+            '#3d2409', '#6b4523', '#8a6040', '#c4993f', '#d4b870',
+            '#e2c97e', '#f5ead8', '#2c1a08', '#9a7450', '#b09060'
+        ];
+
+        fetch('books.json')
+            .then(r => r.json())
+            .then(books => setupDashboard(books));
+
+        function getRating(book) {
+            if (!book.rating) return 0;
+            return parseFloat(String(book.rating).replace('/5', '')) || 0;
+        }
+
+        function setupDashboard(books) {
+            const read = books.filter(b => b.date_sort && b.date_sort !== '0000-00-00');
+            renderStats(books, read);
+            renderTopTen(books);
+            renderBooksPerYear(read);
+            renderPagesPerYear(read);
+            renderDecadePie(books);
+            renderGenreChart(books);
+        }
+
+        /* --- STATS SUMMARY --- */
+        function renderStats(all, read) {
+            const totalBooks = all.length;
+            const totalPages = all.reduce((s, b) => s + (parseInt(b.pages) || 0), 0);
+            const rated = all.filter(b => getRating(b) > 0);
+            const avgRating = rated.length
+                ? (rated.reduce((s, b) => s + getRating(b), 0) / rated.length).toFixed(1)
+                : '—';
+            const years = [...new Set(read.map(b => b.date_sort?.substring(0,4)).filter(Boolean))];
+
+            document.getElementById('stat-row').innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-number">${totalBooks}</div>
+                    <div class="stat-label">Books Read</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${totalPages > 0 ? totalPages.toLocaleString() : '—'}</div>
+                    <div class="stat-label">Total Pages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${avgRating}<span style="font-size:1rem;font-weight:300">/5</span></div>
+                    <div class="stat-label">Avg Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${years.length}</div>
+                    <div class="stat-label">Years Active</div>
+                </div>
+            `;
+        }
+
+        /* --- TOP TEN --- */
+        function renderTopTen(books) {
+            const top = books
+                .filter(b => getRating(b) > 0)
+                .sort((a, b) => getRating(b) - getRating(a))
+                .slice(0, 10);
+
+            document.getElementById('top-ten-list').innerHTML = top.map(b => `
+                <li>
+                    <span class="book-info">
+                        <span class="book-title">${b.title}</span>
+                        <span class="book-author">${b.author || ''}</span>
+                    </span>
+                    <span class="rating">${'★'.repeat(parseInt(b.rating))}${'☆'.repeat(5 - parseInt(b.rating))}</span>
+                </li>
+            `).join('');
+        }
+
+        /* --- BOOKS PER YEAR --- */
+        function renderBooksPerYear(read) {
+            const counts = read.reduce((acc, b) => {
+                const y = b.date_sort.substring(0, 4);
+                acc[y] = (acc[y] || 0) + 1;
+                return acc;
+            }, {});
+            const years = Object.keys(counts).sort();
+
+            new Chart(document.getElementById('booksPerYearChart'), {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Books Read',
+                        data: years.map(y => counts[y]),
+                        borderColor: '#3d2409',
+                        backgroundColor: 'rgba(61, 36, 9, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#c4993f'
+                    }]
+                },
+                options: { plugins: { legend: { display: false } } }
+            });
+        }
+
+        /* --- PAGES PER YEAR --- */
+        function renderPagesPerYear(read) {
+            const pages = read.reduce((acc, b) => {
+                const y = b.date_sort.substring(0, 4);
+                acc[y] = (acc[y] || 0) + (parseInt(b.pages) || 0);
+                return acc;
+            }, {});
+            const years = Object.keys(pages).sort();
+            if (years.length === 0 || years.every(y => pages[y] === 0)) return;
+
+            new Chart(document.getElementById('pagesPerYearChart'), {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Pages Read',
+                        data: years.map(y => pages[y]),
+                        backgroundColor: '#c4993f',
+                        borderColor: '#3d2409',
+                        borderWidth: 1
+                    }]
+                },
+                options: { plugins: { legend: { display: false } } }
+            });
+        }
+
+        /* --- DECADE PIE --- */
+        function renderDecadePie(books) {
+            const decades = books.reduce((acc, b) => {
+                const yr = parseInt(b.year_published);
+                if (!isNaN(yr) && yr > 0) {
+                    const d = `${Math.floor(yr / 10) * 10}s`;
+                    acc[d] = (acc[d] || 0) + 1;
+                }
+                return acc;
+            }, {});
+            const sorted = Object.keys(decades).sort();
+
+            new Chart(document.getElementById('decadePieChart'), {
+                type: 'pie',
+                data: {
+                    labels: sorted,
+                    datasets: [{
+                        data: sorted.map(d => decades[d]),
+                        backgroundColor: PALETTE
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        /* --- GENRE CHART --- */
+        function renderGenreChart(books) {
+            const counts = {};
+            books.forEach(b => {
+                (b.genres || []).forEach(g => { counts[g] = (counts[g] || 0) + 1; });
+            });
+            const sorted = Object.entries(counts)
+                .filter(([, c]) => c >= 2)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            if (sorted.length === 0) return;
+
+            document.getElementById('genre-widget').style.display = 'block';
+            new Chart(document.getElementById('genreChart'), {
+                type: 'bar',
+                data: {
+                    labels: sorted.map(([g]) => g.replace(/-/g, ' ')),
+                    datasets: [{
+                        label: 'Books',
+                        data: sorted.map(([, c]) => c),
+                        backgroundColor: '#6b4523',
+                        borderColor: '#3d2409',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: { x: { ticks: { stepSize: 1 } } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
