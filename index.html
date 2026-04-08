@@ -422,6 +422,7 @@
         <div class="tabs-container" id="year-tabs"></div>
         <div class="filter-buttons">
             <button class="btn-filter" onclick="openPanel('notes')">Notes</button>
+            <button class="btn-filter" onclick="openPanel('genre')">Genre</button>
             <button class="btn-filter" onclick="openPanel('rating')">Rating</button>
             <button class="btn-filter" onclick="openPanel('decade')">Decade</button>
             <button class="btn-filter" onclick="openPanel('all')">All Filters</button>
@@ -466,6 +467,11 @@
                         <label class="checkbox-label"><input type="radio" name="sort" value="rate-low" onchange="applyFilters()"> Rating Low → High</label>
                     </div>
                 </div>
+            </div>
+            <!-- Genre -->
+            <div class="accordion-item" id="acc-genre">
+                <div class="accordion-header" onclick="toggleAccordion('acc-genre')">Genre <span class="icon-plus">+</span></div>
+                <div class="accordion-content"><div class="checkbox-group" id="container-genre"></div></div>
             </div>
             <!-- Notes -->
             <div class="accordion-item" id="acc-notes">
@@ -654,6 +660,18 @@
         function toggleAccordion(id) { document.getElementById(id).classList.toggle('active'); }
 
         function populateDynamicFilters() {
+            // Genres (sorted by count descending, show those with ≥2 books)
+            const genreCounts = {};
+            allBooks.forEach(b => (b.genres || []).forEach(g => { genreCounts[g] = (genreCounts[g] || 0) + 1; }));
+            const topGenres = Object.entries(genreCounts)
+                .filter(([, c]) => c >= 2)
+                .sort((a, b) => b[1] - a[1]);
+            const genreEl = document.getElementById('container-genre');
+            topGenres.forEach(([g, c]) => {
+                genreEl.innerHTML += `<label class="checkbox-label"><input type="checkbox" class="filter-cb" data-category="genre" value="${g}" onchange="applyFilters()"> ${g} <span style="opacity:0.45;font-size:0.8em">(${c})</span></label>`;
+            });
+
+            // Decades (publication year)
             const decades = new Set();
             allBooks.forEach(b => {
                 const yr = parseInt(b.year_published);
@@ -673,6 +691,7 @@
         }
 
         function applyFilters() {
+            const checkedGenres  = Array.from(document.querySelectorAll('input[data-category="genre"]:checked')).map(cb => cb.value);
             const checkedRatings = Array.from(document.querySelectorAll('input[data-category="rating"]:checked')).map(cb => cb.value);
             const checkedDecades = Array.from(document.querySelectorAll('input[data-category="decade"]:checked')).map(cb => cb.value);
             const sortVal = document.querySelector('input[name="sort"]:checked').value;
@@ -680,6 +699,7 @@
 
             filteredBooks = currentTabBooks.filter(b => {
                 if (notesChecked && (!b.review || b.review === 'nan' || b.review.trim() === '')) return false;
+                if (checkedGenres.length > 0 && !checkedGenres.some(g => (b.genres || []).includes(g))) return false;
                 if (checkedRatings.length > 0) {
                     if (checkedRatings.includes('rated') && getRating(b) === 0) return false;
                     const specificStars = checkedRatings.filter(v => v !== 'rated');
@@ -712,6 +732,7 @@
             renderGrid(filteredBooks, grid);
 
             updateButtonState('notes', notesChecked);
+            updateButtonState('genre', checkedGenres.length > 0);
             updateButtonState('rating', checkedRatings.length > 0);
             updateButtonState('decade', checkedDecades.length > 0);
         }

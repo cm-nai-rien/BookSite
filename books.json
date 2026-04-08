@@ -9,7 +9,9 @@
         "cover": "https://books.google.com/books/content?id=d9ckjgEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "192.0",
         "year_published": "2016",
-        "genres": [],
+        "genres": [
+            "Art"
+        ],
         "isbn": "9789063694227"
     },
     {
@@ -22,7 +24,9 @@
         "cover": "",
         "pages": "368.0",
         "year_published": "2019",
-        "genres": [],
+        "genres": [
+            "Cooks"
+        ],
         "isbn": "9789860625301"
     },
     {
@@ -35,7 +39,9 @@
         "cover": "https://books.google.com/books/content?id=oqdYDgAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "423.0",
         "year_published": "2017",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9781594205613"
     },
     {
@@ -48,7 +54,9 @@
         "cover": "https://books.google.com/books/content?id=30UlEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "256.0",
         "year_published": "2021",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9780525657743"
     },
     {
@@ -58,10 +66,12 @@
         "date_sort": "2026-02-14",
         "review": "second read. thankfully i'm not excellent enough to be in that world.",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=ddOUEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "265.0",
         "year_published": "2022",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -97,10 +107,12 @@
         "date_sort": "2025-11-23",
         "review": "",
         "rating": "0",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=EQQvEQAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "320.0",
         "year_published": "2008",
-        "genres": [],
+        "genres": [
+            "Business & Economics"
+        ],
         "isbn": ""
     },
     {
@@ -126,7 +138,9 @@
         "cover": "https://books.google.com/books/content?id=Wy7TCwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "418.0",
         "year_published": "2016",
-        "genres": [],
+        "genres": [
+            "Social Science"
+        ],
         "isbn": "9780553447439"
     },
     {
@@ -136,10 +150,12 @@
         "date_sort": "2025-04-06",
         "review": "not sure what to think about the book. really enjoyed the movie, but the novel is intricate with details such as religion, existentialism, our relationship with nature and animals, which the movies do not and probably should not include. taking consideration into the novel was written in 1968, i can reluctantly bear with the fact that the male protagonist's sexual and emotional relationship with a female android, and his dreadful self-sabotaging contempt for his feeling meant. mirror/lacan. humanism/human condition. nature. empathy+emotions. just a lot.",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=PiCWSgAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "258.0",
         "year_published": "1968",
-        "genres": [],
+        "genres": [
+            "American fiction"
+        ],
         "isbn": ""
     },
     {
@@ -152,7 +168,9 @@
         "cover": "https://books.google.com/books/content?id=6rdPEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "352.0",
         "year_published": "2018",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9780399590504"
     },
     {
@@ -165,7 +183,9 @@
         "cover": "https://books.google.com/books/content?id=MOJZ8ihldbAC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "227.0",
         "year_published": "2005",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9781400078431"
     },
     {
@@ -178,7 +198,9 @@
         "cover": "https://books.google.com/books/content?id=5my-zQEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "245.0",
         "year_published": "2021",
-        "genres": [],
+        "genres": [
+            "Self-Help"
+        ],
         "isbn": "9780374159122"
     },
     {
@@ -191,7 +213,9 @@
         "cover": "https://books.google.com/books/content?id=WKZPEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "403.0",
         "year_published": "2022",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780593298350"
     },
     {
@@ -204,7 +228,9 @@
         "cover": "https://books.google.com/books/content?id=WProDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "309.0",
         "year_published": "2020",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9781984899422"
     },
     {
@@ -217,7 +243,9 @@
         "cover": "https://books.google.com/books/content?id=vQ7cnAEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "264.0",
         "year_published": "2013",
-        "genres": [],
+        "genres": [
+            "Computers"
+        ],
         "isbn": "9781933820187"
     },
     {
@@ -230,7 +258,9 @@
         "cover": "https://books.google.com/books/content?id=QcWWwAEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "288.0",
         "year_published": "2005",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9780743247542"
     },
     {
@@ -243,7 +273,9 @@
         "cover": "https://books.google.com/books/content?id=foeNrgEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "296.0",
         "year_published": "2016",
-        "genres": [],
+        "genres": [
+            "Business & Economics"
+        ],
         "isbn": "9781455586691"
     },
     {
@@ -256,7 +288,9 @@
         "cover": "https://books.google.com/books/content?id=5E5o3_y5TpAC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "426.0",
         "year_published": "2012",
-        "genres": [],
+        "genres": [
+            "Business & Economics"
+        ],
         "isbn": "9781400067824"
     },
     {
@@ -269,7 +303,9 @@
         "cover": "https://books.google.com/books/content?id=tHiMEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "272.0",
         "year_published": "1948",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780099478423"
     },
     {
@@ -279,10 +315,12 @@
         "date_sort": "2024-07-23",
         "review": "Great, succinct, and thoughtful explanation of what brings us [as a whole] here and now.",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=MosvEQAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "512.0",
         "year_published": "2011",
-        "genres": [],
+        "genres": [
+            "History"
+        ],
         "isbn": ""
     },
     {
@@ -295,7 +333,9 @@
         "cover": "https://books.google.com/books/content?id=_T0sngEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "320.0",
         "year_published": "2013",
-        "genres": [],
+        "genres": [
+            "Business & Economics"
+        ],
         "isbn": "9780062114860"
     },
     {
@@ -308,7 +348,9 @@
         "cover": "https://books.google.com/books/content?id=Ly2OEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "284.0",
         "year_published": "2023",
-        "genres": [],
+        "genres": [
+            "Social Science"
+        ],
         "isbn": "9780593239919"
     },
     {
@@ -318,10 +360,12 @@
         "date_sort": "2024-04-01",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=orVuDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "416.0",
         "year_published": "2019",
-        "genres": [],
+        "genres": [
+            "Design"
+        ],
         "isbn": ""
     },
     {
@@ -331,10 +375,12 @@
         "date_sort": "2024-02-01",
         "review": "",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=A8KOEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "399.0",
         "year_published": "2022",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780735243347"
     },
     {
@@ -344,10 +390,12 @@
         "date_sort": "2023-05-20",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=JzZJtwAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "342.0",
         "year_published": "2011",
-        "genres": [],
+        "genres": [
+            "Literary Criticism"
+        ],
         "isbn": "9780822351115"
     },
     {
@@ -357,10 +405,12 @@
         "date_sort": "2023-05-20",
         "review": "",
         "rating": "0",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=AlSQDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "642.0",
         "year_published": "2014",
-        "genres": [],
+        "genres": [
+            "Computers"
+        ],
         "isbn": "9781119547303"
     },
     {
@@ -370,10 +420,12 @@
         "date_sort": "2022-12-06",
         "review": "",
         "rating": "4",
-        "cover": "https://books.google.com/books/content?id=T8pcH4QjATkC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=T8pcH4QjATkC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "472.0",
         "year_published": "1997",
-        "genres": [],
+        "genres": [
+            "Computers"
+        ],
         "isbn": "9781558604117"
     },
     {
@@ -383,10 +435,12 @@
         "date_sort": "2022-11-18",
         "review": "",
         "rating": "5",
-        "cover": "https://books.google.com/books/content?id=tLpa1yaw7icC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=tLpa1yaw7icC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "96.0",
         "year_published": "2000",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9781583222560"
     },
     {
@@ -396,10 +450,12 @@
         "date_sort": "2022-01-01",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=naNaAAAAMAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "160.0",
         "year_published": "1951",
-        "genres": [],
+        "genres": [
+            "Adultery"
+        ],
         "isbn": ""
     },
     {
@@ -412,7 +468,9 @@
         "cover": "https://books.google.com/books/content?id=3jwOAQAAMAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "180.0",
         "year_published": "1955",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780143039020"
     },
     {
@@ -425,7 +483,9 @@
         "cover": "https://books.google.com/books/content?id=r5vxAQAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "342.0",
         "year_published": "2018",
-        "genres": [],
+        "genres": [
+            "Business & Economics"
+        ],
         "isbn": "9781473637467"
     },
     {
@@ -435,10 +495,12 @@
         "date_sort": "2022-01-01",
         "review": "",
         "rating": "4",
-        "cover": "https://books.google.com/books/content?id=Tp2hDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=EjN5DwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "336.0",
         "year_published": "2019",
-        "genres": [],
+        "genres": [
+            "Science"
+        ],
         "isbn": "9781426220555"
     },
     {
@@ -451,7 +513,9 @@
         "cover": "https://books.google.com/books/content?id=bedDDQAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "74.0",
         "year_published": "2016",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9780525432753"
     },
     {
@@ -461,10 +525,12 @@
         "date_sort": "2022-01-01",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=MNbAQgAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "371.0",
         "year_published": "1967",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -477,7 +543,9 @@
         "cover": "https://books.google.com/books/content?id=wLpPEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "273.0",
         "year_published": "2018",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9781984822178"
     },
     {
@@ -490,7 +558,9 @@
         "cover": "https://books.google.com/books/content?id=i4iMEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "192.0",
         "year_published": "1942",
-        "genres": [],
+        "genres": [
+            "Literary Collections"
+        ],
         "isbn": "9780141182001"
     },
     {
@@ -500,10 +570,12 @@
         "date_sort": "0000-00-00",
         "review": "Translating Myself and Others is a more academic-like, fragmented yet investigative collections on translation, Lahiri's relationship with translation, and on discovered metaphors of transformation. <br/>A lot of criticism of this book talks about how she threw literary jargons around, basically criticizing her on \"flexing\" her experience and background in translation, basically condemning this book for not being democratic enough.<br/><br/>I personally would dispute these sort of comments, since I believe writings and art does not need to serve the public, but the readings of this collection would be way more meaningful if you do have literary training or are familiar with the authors Lahiri is writing about. <br/><br/>I think her writings resonates with anyone who \"lives\" with more than one language - when the identification of oneself ruptured with a single culture, and we seek and look to another place that we comfortably embrace as ours.",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=yXVPEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "208.0",
         "year_published": "2022",
-        "genres": [],
+        "genres": [
+            "Language Arts & Disciplines"
+        ],
         "isbn": "9780691231167"
     },
     {
@@ -513,10 +585,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "3",
-        "cover": "https://books.google.com/books/content?id=Wbgwq0UfUAEC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=Wbgwq0UfUAEC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "146.0",
         "year_published": "1962",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780743431682"
     },
     {
@@ -526,10 +600,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "https://books.google.com/books/content?id=Sca-B1cQnX0C&printsec=frontcover&img=1&zoom=0&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=9kEQEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "170.0",
         "year_published": "1960",
-        "genres": [],
+        "genres": [
+            "Literary Criticism"
+        ],
         "isbn": "9780060093747"
     },
     {
@@ -539,10 +615,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=_wZ1Rf1QQ_EC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "477.0",
         "year_published": "2013",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -555,7 +633,9 @@
         "cover": "https://books.google.com/books/content?id=-xi1AAAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "48.0",
         "year_published": "1956",
-        "genres": [],
+        "genres": [
+            "Juvenile Fiction"
+        ],
         "isbn": "9780375837890"
     },
     {
@@ -568,7 +648,9 @@
         "cover": "https://books.google.com/books/content?id=eMq_lTq6fUgC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "241.0",
         "year_published": "2006",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780307265432"
     },
     {
@@ -581,7 +663,9 @@
         "cover": "https://books.google.com/books/content?id=9vGiDQAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "260.0",
         "year_published": "2016",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780374278625"
     },
     {
@@ -594,7 +678,9 @@
         "cover": "https://books.google.com/books/content?id=c-Q0AAAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "249.0",
         "year_published": "2014",
-        "genres": [],
+        "genres": [
+            "Athens (Greece)"
+        ],
         "isbn": "9780571233625"
     },
     {
@@ -604,10 +690,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "https://books.google.com/books/content?id=o8arDwAAQBAJ&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=o8arDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "353.0",
         "year_published": "1997",
-        "genres": [],
+        "genres": [
+            "Social Science"
+        ],
         "isbn": "9789571378527"
     },
     {
@@ -617,10 +705,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "3",
-        "cover": "https://books.google.com/books/content?id=rQ4gEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=nygfEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "239.0",
         "year_published": "2021",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9781250817860"
     },
     {
@@ -633,7 +723,9 @@
         "cover": "https://books.google.com/books/content?id=s9rWfMUdY4kC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "",
         "year_published": "1791",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9781595479563"
     },
     {
@@ -659,7 +751,9 @@
         "cover": "",
         "pages": "480.0",
         "year_published": "2005",
-        "genres": [],
+        "genres": [
+            "Investments"
+        ],
         "isbn": "9789866032646"
     },
     {
@@ -669,10 +763,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "0",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=9jhi2bY3GkAC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "176.0",
         "year_published": "1948",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -695,10 +791,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=8W70AQAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "308.0",
         "year_published": "1947",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -708,10 +806,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=pSFZEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "193.0",
         "year_published": "1919",
-        "genres": [],
+        "genres": [
+            "Biography & Autobiography"
+        ],
         "isbn": "9783518367063"
     },
     {
@@ -721,10 +821,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "3",
-        "cover": "https://books.google.com/books/content?id=rMCB9a2OqpcC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=rMCB9a2OqpcC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "160.0",
         "year_published": "1988",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780802142443"
     },
     {
@@ -734,10 +836,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "0",
-        "cover": "https://books.google.com/books/content?id=9Z9biHaoLZIC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=9Z9biHaoLZIC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "164.0",
         "year_published": "1981",
-        "genres": [],
+        "genres": [
+            "Art"
+        ],
         "isbn": "9780472065219"
     },
     {
@@ -750,7 +854,9 @@
         "cover": "https://books.google.com/books/content?id=3toFBCl4bdgC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "147.0",
         "year_published": "1956",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780679720225"
     },
     {
@@ -763,7 +869,9 @@
         "cover": "https://books.google.com/books/content?id=fXC3AQAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "67.0",
         "year_published": "1973",
-        "genres": [],
+        "genres": [
+            "Literary Criticism"
+        ],
         "isbn": "9780374521608"
     },
     {
@@ -776,7 +884,9 @@
         "cover": "https://books.google.com/books/content?id=BuLYyrScm1YC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "160.0",
         "year_published": "1957",
-        "genres": [],
+        "genres": [
+            "Foreign Language Study"
+        ],
         "isbn": "9780374521509"
     },
     {
@@ -786,10 +896,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "https://books.google.com/books/content?id=Vs-BdyhM9JEC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=Vs-BdyhM9JEC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "400.0",
         "year_published": "1997",
-        "genres": [],
+        "genres": [
+            "Social Science"
+        ],
         "isbn": "9780761954323"
     },
     {
@@ -802,7 +914,9 @@
         "cover": "https://books.google.com/books/content?id=5RpjrgEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "233.0",
         "year_published": "2015",
-        "genres": [],
+        "genres": [
+            "BIOGRAPHY & AUTOBIOGRAPHY"
+        ],
         "isbn": "9781101875551"
     },
     {
@@ -815,7 +929,9 @@
         "cover": "https://books.google.com/books/content?id=YqgmAQAAMAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "96.0",
         "year_published": "1952",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780684830490"
     },
     {
@@ -828,7 +944,9 @@
         "cover": "https://books.google.com/books/content?id=THMJ_Mo-CdAC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "184.0",
         "year_published": "1843",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9781561797462"
     },
     {
@@ -854,7 +972,9 @@
         "cover": "https://books.google.com/books/content?id=kOS8oQEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "115.0",
         "year_published": "2013",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780062356895"
     },
     {
@@ -867,7 +987,9 @@
         "cover": "https://books.google.com/books/content?id=czPAd_xrPyMC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "156.0",
         "year_published": "1995",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780060928414"
     },
     {
@@ -880,7 +1002,9 @@
         "cover": "https://books.google.com/books/content?id=Q4-KVB3OnskC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "432.0",
         "year_published": "1973",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780060997021"
     },
     {
@@ -893,7 +1017,9 @@
         "cover": "https://books.google.com/books/content?id=qAiPhymGPuAC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "195.0",
         "year_published": "2000",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780060002107"
     },
     {
@@ -906,7 +1032,9 @@
         "cover": "https://books.google.com/books/content?id=EyZ4PwAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "400.0",
         "year_published": "1990",
-        "genres": [],
+        "genres": [
+            "Czech fiction"
+        ],
         "isbn": "9780571144563"
     },
     {
@@ -919,7 +1047,9 @@
         "cover": "https://books.google.com/books/content?id=OU1_PwAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "314.0",
         "year_published": "1984",
-        "genres": [],
+        "genres": [
+            "Adultery"
+        ],
         "isbn": "9780571224388"
     },
     {
@@ -932,7 +1062,9 @@
         "cover": "",
         "pages": "142.0",
         "year_published": "1958",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -942,10 +1074,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=iXn5U2IzVH0C&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "180.0",
         "year_published": "1925",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780743273565"
     },
     {
@@ -955,10 +1089,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=27KePwAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "296.0",
         "year_published": "1987",
-        "genres": [],
+        "genres": [
+            "Man-woman relationships"
+        ],
         "isbn": ""
     },
     {
@@ -968,10 +1104,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=Ax6yEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "152.0",
         "year_published": "1922",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -984,7 +1122,9 @@
         "cover": "https://books.google.com/books/content?id=ykWQEAAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "371.0",
         "year_published": "2003",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9781594631931"
     },
     {
@@ -997,7 +1137,9 @@
         "cover": "https://books.google.com/books/content?id=LoJoAAAAMAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "372.0",
         "year_published": "2007",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9781594489501"
     },
     {
@@ -1007,10 +1149,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=KOmkNwAACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "192.0",
         "year_published": "2000",
-        "genres": [],
+        "genres": [
+            "Comics & Graphic Novels"
+        ],
         "isbn": "9781421501086"
     },
     {
@@ -1033,10 +1177,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "3",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=pK0X5FyUs28C&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "213.0",
         "year_published": "1999",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -1046,10 +1192,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=lFhbDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "319.0",
         "year_published": "2018",
-        "genres": [],
+        "genres": [
+            "Business & Economics"
+        ],
         "isbn": ""
     },
     {
@@ -1059,10 +1207,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=jA_ADwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "255.0",
         "year_published": "1925",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": ""
     },
     {
@@ -1072,10 +1222,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=Oui_0AEACAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "212.0",
         "year_published": "1942",
-        "genres": [],
+        "genres": [
+            "Philosophy"
+        ],
         "isbn": ""
     },
     {
@@ -1085,10 +1237,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "3",
-        "cover": "https://books.google.com/books/content?id=dbCJ40j7t1sC&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=dbCJ40j7t1sC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "178.0",
         "year_published": "1938",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780811201889"
     },
     {
@@ -1101,7 +1255,9 @@
         "cover": "https://books.google.com/books/content?id=J0DfnZBxJrkC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "128.0",
         "year_published": "1965",
-        "genres": [],
+        "genres": [
+            "Poetry"
+        ],
         "isbn": "9780060931728"
     },
     {
@@ -1114,7 +1270,9 @@
         "cover": "https://books.google.com/books/content?id=VYdr_5jK3tMC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "38.0",
         "year_published": "1963",
-        "genres": [],
+        "genres": [
+            "Juvenile Nonfiction"
+        ],
         "isbn": "9780099408390"
     },
     {
@@ -1124,10 +1282,12 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "5",
-        "cover": "https://books.google.com/books/content?id=wemvDwAAQBAJ&printsec=frontcover&img=1&zoom=0&edge=curl&source=gbs_api",
+        "cover": "https://books.google.com/books/content?id=wemvDwAAQBAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "249.0",
         "year_published": "1623",
-        "genres": [],
+        "genres": [
+            "Drama"
+        ],
         "isbn": "9780743477109"
     },
     {
@@ -1137,7 +1297,7 @@
         "date_sort": "0000-00-00",
         "review": "",
         "rating": "4",
-        "cover": "",
+        "cover": "https://books.google.com/books/content?id=w9A98UIGNMAC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "272.0",
         "year_published": "1890",
         "genres": [],
@@ -1153,7 +1313,9 @@
         "cover": "https://books.google.com/books/content?id=NVZuUSJtpcQC&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "160.0",
         "year_published": "2012",
-        "genres": [],
+        "genres": [
+            "Self-Help"
+        ],
         "isbn": "9780761169253"
     },
     {
@@ -1166,7 +1328,9 @@
         "cover": "https://books.google.com/books/content?id=1_NWAAAAYAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "176.0",
         "year_published": "1972",
-        "genres": [],
+        "genres": [
+            "ART"
+        ],
         "isbn": "9780140135152"
     },
     {
@@ -1179,7 +1343,9 @@
         "cover": "https://books.google.com/books/content?id=UdnSAAAAMAAJ&printsec=frontcover&img=1&zoom=0&source=gbs_api",
         "pages": "277.0",
         "year_published": "1951",
-        "genres": [],
+        "genres": [
+            "Fiction"
+        ],
         "isbn": "9780316769174"
     }
 ]
