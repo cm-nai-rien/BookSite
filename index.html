@@ -9,7 +9,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
         :root {
-            /* PRIMITIVES */
             --color-brown-dark:   #3d2409;
             --color-brown-medium: #6b4523;
             --color-gold:         #c4993f;
@@ -22,27 +21,27 @@
             --color-gray-light:   #2e2518;
             --color-gray-lighter: #8a7a66;
             --color-white:        #ffffff;
-            --color-white-dim:    #e8ddd0;
+            --color-white-dim:    #dddddd;
 
-            /* TOKENS */
             --bg-page:        var(--color-gray-medium);
             --bg-card:        transparent;
             --bg-featured:    var(--color-parchment);
             --bg-ui:          var(--color-gray-dark);
-            --bg-panel:       #fdf9f3;
-            --bg-overlay:     rgba(61, 36, 9, 0.88);
+            --bg-panel:       #fcfcfc;
+            --bg-overlay:     rgba(61, 36, 9, 0.85);
 
             --text-primary:   var(--color-parchment);
             --text-inverted:  var(--color-gray-medium);
-            --text-accent:    var(--color-gold-light);
-            --text-panel:     var(--color-gray-medium);
+            --text-dim:       var(--color-parchment);
+            --text-accent:    var(--color-parchment);
+            --text-panel:     var(--color-gray-dark);
 
             --border-ui:      var(--color-brown-dark);
-            --border-light:   #ddd5c4;
+            --border-light:   #e0e0e0;
 
             --shadow-retro:   10px 10px 0px rgba(61, 36, 9, 0.2);
             --shadow-panel:   -5px 0 30px rgba(0,0,0,0.2);
-            --shadow-card:    0 10px 20px rgba(0,0,0,0.15);
+            --shadow-card:    0 10px 20px rgba(0,0,0,0.1);
         }
 
         * { box-sizing: border-box; }
@@ -60,27 +59,6 @@
         body.panel-open { overflow: hidden; }
 
         /* --- HEADER & NAV --- */
-        .top-nav {
-            display: flex;
-            justify-content: flex-end;
-            padding: 20px 5%;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .nav-link {
-            color: var(--text-primary);
-            text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
-            font-weight: 300;
-            font-style: italic;
-            letter-spacing: 1px;
-            border-bottom: 2px solid transparent;
-            transition: 0.2s;
-            text-decoration: none;
-        }
-        .nav-link:hover { border-bottom-color: var(--text-primary); }
-
         header {
             text-align: left;
             padding: 2rem 0 3rem;
@@ -103,6 +81,19 @@
             font-size: clamp(2rem, 6vw, 2.2rem);
         }
 
+        .nav-link {
+            color: var(--text-primary);
+            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .nav-link:hover { border-bottom-color: var(--text-primary); }
+
         /* --- FEATURED SECTION --- */
         .featured-wrapper {
             max-width: 1600px;
@@ -110,7 +101,7 @@
             width: 90%;
             background-color: var(--bg-featured);
             padding: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             color: var(--text-inverted);
         }
 
@@ -125,28 +116,24 @@
         }
 
         .featured-content { display: flex; gap: 50px; align-items: center; }
-        .featured-cover {
-            flex-shrink: 0; width: 11rem; overflow: hidden;
+        .featured-poster {
+            flex-shrink: 0; width: 12rem; overflow: hidden;
             box-shadow: var(--shadow-retro); transform: rotate(-2deg);
         }
-        .featured-cover img { width: 100%; height: auto; display: block; }
-        .featured-cover-placeholder {
-            flex-shrink: 0; width: 11rem; aspect-ratio: 2/3;
-            background: var(--color-parchment);
-            border: 2px dashed var(--color-brown-medium);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--color-brown-medium);
-            box-shadow: var(--shadow-retro); transform: rotate(-2deg);
+        .featured-poster img { width: 100%; height: auto; display: block; }
+        .featured-poster-placeholder {
+            flex-shrink: 0; width: 12rem; aspect-ratio: 2/3;
+            background: #e8dcc8; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; box-shadow: var(--shadow-retro); transform: rotate(-2deg);
         }
+        .featured-info { visibility: visible; }
         .f-date { font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 20px; display: inline-block; padding: 2px 10px; }
         .f-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.1; margin: 0 0 6px 0; font-style: italic; }
-        .f-author { font-family: 'Outfit', sans-serif; font-size: 1.05rem; margin-bottom: 6px; opacity: 0.7; }
+        .f-author { font-family: 'Outfit', sans-serif; font-size: 1rem; margin: 0 0 8px 0; opacity: 0.65; }
         .f-rating { font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 14px; display: inline-block; opacity: 0.8; }
         .f-notes {
             max-width: 720px;
-            font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.6;
-            position: relative; padding-left: 20px; border-left: 2px solid var(--color-brown-dark);
-        }
+            font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.6; position: relative; padding-left: 20px; border-left: 2px solid var(--color-brown-dark); }
 
         /* --- YEAR TABS --- */
         .tabs-container {
@@ -154,7 +141,6 @@
             overflow-x: auto;
             padding: 0;
             margin-bottom: 0;
-            max-width: 90%;
             align-items: flex-end;
         }
         .tabs-container::-webkit-scrollbar { display: none; }
@@ -256,15 +242,14 @@
         }
         .btn-filter:hover, .btn-filter.active {
             background: var(--color-brown-dark);
-            color: var(--color-white);
-        }
+            color: var(--color-white); }
 
         .counter { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 1rem; }
 
         /* --- GRID --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
             gap: 2rem 1.5rem;
             padding-bottom: 100px;
         }
@@ -273,11 +258,11 @@
 
         .card-image-wrapper {
             position: relative; width: 100%; aspect-ratio: 2/3; overflow: hidden;
-            background: var(--color-gray-light); box-shadow: var(--shadow-card);
+            background: var(--color-gray-medium); box-shadow: var(--shadow-card);
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
-        .card:hover .card-image-wrapper { transform: translateY(-5px); box-shadow: 0 20px 30px rgba(196, 153, 63, 0.15); }
+        .card:hover .card-image-wrapper { transform: translateY(-5px); box-shadow: 0 20px 30px rgba(176, 176, 176, 0.15); }
         .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .card-placeholder {
@@ -295,521 +280,562 @@
         }
 
         .info {
-            position: absolute; inset: 0; background: var(--bg-overlay); padding: 0.75rem;
-            display: flex; flex-direction: column; justify-content: flex-end;
-            opacity: 0; transition: opacity 0.25s;
-        }
-        .card-image-wrapper:hover .info { opacity: 1; }
-
-        .info-rating { font-size: 0.85rem; color: var(--color-gold-light); margin-bottom: 4px; }
-        .info-date { font-size: 0.7rem; color: var(--color-white-dim); opacity: 0.8; }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 0.9rem;
-            line-height: 1.3;
-            margin: 0;
+            position: absolute; inset: 0; background: var(--bg-overlay); padding: 0.3rem;
+            display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
+            text-align: left; opacity: 0; transition: opacity 0.3s ease; backdrop-filter: blur(3px);
             color: var(--text-primary);
-            cursor: pointer;
         }
-        .card-title:hover { opacity: 0.75; }
-        .card-author {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.72rem;
-            color: var(--color-gray-lighter);
-            margin: 2px 0 0 0;
-        }
+        .card:hover .info { opacity: 1; }
 
-        /* --- SIDE PANEL --- */
-        .panel-overlay {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.5); z-index: 100;
-        }
-        .panel-overlay.visible { display: block; }
+        .info-date { font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; color: var(--color-parchment); font-weight: bold; }
+        .info-notes { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; line-height: 1.4; max-height: 80%; overflow-y: auto; }
 
-        .side-panel {
-            position: fixed; top: 0; right: -520px; width: 480px; max-width: 95vw;
-            height: 100vh; background: var(--bg-panel); z-index: 101;
-            overflow-y: auto; transition: right 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--shadow-panel);
-        }
-        .side-panel.open { right: 0; }
+        .card-title { font-family: 'Outfit', sans-serif; font-size: 0.9rem; line-height: 1.2; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+        .card-meta-row { font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 200; display: flex; justify-content: space-between; align-items: center; color: var(--text-dim); margin-bottom: 4px; }
+        .card-rating { font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 200; color: var(--text-primary); }
+        .card-author { font-size: 0.8rem; color: var(--text-dim); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.7; }
+        .card-watched { font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-style: italic; font-weight: 200; color: var(--text-primary); text-align: right; opacity: 0.5; margin-top: 2px; }
 
-        .panel-close {
-            position: absolute; top: 18px; right: 20px; background: none; border: none;
-            font-size: 1.6rem; cursor: pointer; color: var(--text-panel);
-            line-height: 1; padding: 0; transition: opacity 0.2s;
-        }
-        .panel-close:hover { opacity: 0.5; }
+        /* --- SIDE PANEL (Filters) --- */
+        .panel-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .panel-backdrop.open { opacity: 1; pointer-events: all; }
+        .side-panel { position: fixed; top: 0; right: 0; width: 400px; max-width: 85%; height: 100%; background: var(--bg-panel); color: var(--text-panel); z-index: 999; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: var(--shadow-panel); display: flex; flex-direction: column; }
+        .side-panel.open { transform: translateX(0); }
+        .panel-header { padding: 20px 30px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+        .panel-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; }
+        .btn-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-panel); }
+        .panel-content { flex-grow: 1; overflow-y: auto; padding: 0; }
+        .panel-footer { padding: 20px 30px; border-top: 1px solid var(--border-light); display: flex; gap: 10px; }
+        .btn-action { flex: 1; padding: 12px; border: 1px solid #222; background: transparent; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-action.primary { background: #222; color: #fff; }
+        .btn-action:hover { opacity: 0.8; }
 
-        .panel-cover {
-            width: 100%; max-height: 340px; object-fit: cover;
-            display: block; background: var(--color-gray-light);
+        /* ACCORDIONS */
+        .accordion-item { border-bottom: 1px solid var(--border-light); }
+        .accordion-header { padding: 20px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', sans-serif; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        .accordion-header:hover { background: #f5f5f5; }
+        .accordion-content { display: none; padding: 0 30px 20px 30px; max-height: 300px; overflow-y: auto; }
+        .accordion-item.active .accordion-content { display: block; }
+        .accordion-item.active .icon-plus { transform: rotate(45deg); }
+        .icon-plus { transition: transform 0.3s; font-size: 1.2rem; }
+
+        /* CHECKBOX */
+        .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+        .checkbox-label { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.95rem; color: #444; }
+        .checkbox-label input { width: 18px; height: 18px; accent-color: var(--color-brown-dark); cursor: pointer; }
+
+        .footer { background-color: var(--bg-page); padding: 3rem 2rem; color: var(--text-dim); font-size: 0.8rem; text-align: center; }
+
+        /* --- CARD MODAL --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+            padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.25s;
         }
-        .panel-cover-placeholder {
-            width: 100%; height: 200px; background: var(--color-parchment);
+        .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+        .card-modal {
+            background: var(--color-gray-dark); color: var(--text-primary);
+            border: 1px solid var(--border-ui); max-width: 660px; width: 100%;
+            max-height: 90vh; overflow-y: auto; position: relative;
+            display: flex; gap: 28px; padding: 36px;
+            transform: translateY(12px); transition: transform 0.25s;
+        }
+        .modal-overlay.open .card-modal { transform: translateY(0); }
+
+        .modal-close-btn {
+            position: absolute; top: 14px; right: 18px; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: var(--text-primary);
+            opacity: 0.5; line-height: 1; padding: 0; transition: opacity 0.15s;
+        }
+        .modal-close-btn:hover { opacity: 1; }
+
+        .modal-poster { flex-shrink: 0; width: 110px; }
+        .modal-poster img { width: 100%; height: auto; display: block; box-shadow: var(--shadow-retro); }
+        .modal-poster-placeholder {
+            width: 110px; aspect-ratio: 2/3; background: var(--color-gray-light);
             display: flex; align-items: center; justify-content: center;
-            font-size: 3rem; color: var(--color-brown-medium);
+            font-size: 2rem; box-shadow: var(--shadow-retro);
         }
 
-        .panel-body { padding: 28px 32px 40px; }
+        .modal-body { flex: 1; min-width: 0; }
 
-        .panel-meta-row {
-            display: flex; gap: 8px; flex-wrap: wrap;
-            margin-bottom: 14px; align-items: center;
+        .modal-watch-date {
+            font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
+            color: var(--color-gold-light); margin-bottom: 8px;
         }
-
-        .panel-tag {
-            font-family: 'Outfit', sans-serif; font-size: 0.7rem;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            padding: 3px 10px; border: 1px solid var(--border-light);
-            color: var(--text-panel); background: transparent;
+        .modal-title {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic;
+            line-height: 1.2; margin-bottom: 6px;
         }
-
-        .panel-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.7rem; font-weight: 700; font-style: italic;
-            margin: 0 0 4px 0; line-height: 1.2; color: var(--text-panel);
+        .modal-sub {
+            font-size: 0.85rem; color: var(--color-gray-lighter);
+            margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;
         }
-        .panel-author {
-            font-family: 'Outfit', sans-serif; font-size: 1rem;
-            color: var(--color-brown-medium); margin-bottom: 16px;
-        }
-
-        .panel-rating-row { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
-        .panel-stat { font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #555; }
-        .panel-stat strong { color: var(--text-panel); }
-
-        .panel-divider { border: none; border-top: 1px solid var(--border-light); margin: 18px 0; }
-
-        .panel-review-label {
+        .modal-notes-view {
             font-family: 'Playfair Display', serif; font-style: italic;
-            font-size: 1rem; margin-bottom: 10px; color: var(--color-brown-medium);
+            font-size: 0.95rem; line-height: 1.65;
+            border-left: 2px solid var(--color-brown-dark);
+            padding-left: 14px; margin-bottom: 18px;
         }
-        .panel-review {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem; line-height: 1.7;
-            color: var(--text-panel); white-space: pre-line;
-        }
-        .panel-review-empty { color: #aaa; font-style: italic; font-size: 0.9rem; }
+        .modal-notes-view.empty { opacity: 0.35; }
 
-        .panel-genres { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-        .panel-genre-tag {
-            font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px;
-            padding: 2px 8px; background: var(--color-parchment);
-            border: 1px solid var(--border-light); color: var(--color-brown-medium);
-            font-family: 'Outfit', sans-serif;
+        @media (max-width: 800px) {
+            h1 { font-size: clamp(2rem, 10vw, 3rem); }
+            .featured-content { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+            .control-bar { flex-direction: column; align-items: flex-start; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; }
         }
 
-        /* Panel editable review */
-        .panel-review-edit {
-            width: 100%; min-height: 120px; padding: 10px;
-            font-family: 'Playfair Display', serif; font-size: 1rem; line-height: 1.7;
-            border: 1px solid var(--border-light); background: #fafaf8;
-            color: var(--text-panel); resize: vertical; display: none;
-        }
-        .panel-review-edit:focus { outline: none; border-color: var(--color-gold); }
-        .panel-edit-actions { display: none; gap: 10px; margin-top: 10px; }
-        .btn-edit {
-            background: none; border: 1px solid var(--border-light); padding: 5px 14px;
-            font-family: 'Outfit', sans-serif; font-size: 0.75rem; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-panel);
-            transition: 0.15s;
-        }
-        .btn-edit:hover { background: var(--color-parchment); }
-        .btn-edit.primary { background: var(--color-brown-dark); color: white; border-color: var(--color-brown-dark); }
-        .btn-edit.primary:hover { opacity: 0.85; }
-
-        /* Empty state */
-        .empty-state {
-            text-align: center; padding: 80px 20px;
-            font-family: 'Playfair Display', serif; font-style: italic;
-            font-size: 1.2rem; color: var(--color-gray-lighter);
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .featured-content { flex-direction: column; gap: 24px; }
-            .featured-wrapper { padding: 28px; }
-            .f-title { font-size: 1.6rem; }
-            .side-panel { width: 100%; }
+        @media (max-width: 560px) {
+            .card-modal { flex-direction: column; padding: 24px 20px; gap: 16px; }
+            .modal-poster { width: 80px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="top-nav">
-            <a href="analytics.html" class="nav-link">Analytics</a>
-        </div>
-    </nav>
-
     <header>
-        <h1><a href="index.html">Chaos Book List</a></h1>
+        <h1><a href="index.html">Chao's Book List</a></h1>
+        <a href="analytics.html" class="nav-link" style="float:right; margin-top:-40px;">Analytics</a>
     </header>
 
-    <!-- Featured: Most Recently Read -->
-    <section class="featured-wrapper" id="featured-section">
-        <div class="label-recent">Recently Read</div>
-        <div class="featured-content" id="featured-content">
-            <p style="font-style:italic; opacity:0.5;">Loading...</p>
-        </div>
-    </section>
-
-    <!-- Year Tabs -->
-    <div style="width:90%; max-width:1600px; margin: 0 auto;">
-        <div class="tabs-container" id="tabs-container"></div>
-    </div>
-
-    <!-- Search Row -->
-    <div class="search-row" id="search-row" style="display:none;">
-        <div class="search-bar-wrapper">
-            <input type="text" id="search-input" placeholder="Search title or author…">
-            <button class="search-clear" id="search-clear" title="Clear">×</button>
+    <!-- FEATURED SECTION -->
+    <div class="featured-wrapper" id="featured-section" style="display: none;">
+        <div class="featured-content">
+            <div class="featured-poster" id="f-cover-wrapper">
+                <img id="f-img" src="" alt="Latest Book">
+            </div>
+            <div class="featured-info">
+                <div class="label-recent">Just Finished On</div>
+                <div class="f-date" id="f-date"></div>
+                <div class="f-title" id="f-title"></div>
+                <div class="f-author" id="f-author"></div>
+                <div class="f-rating" id="f-rating"></div>
+                <div class="f-notes" id="f-notes"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Control Bar -->
+    <!-- YEAR TABS + FILTERS -->
     <div class="control-wrapper">
-        <div class="control-bar" style="width:100%;">
-            <div class="filter-buttons" id="filter-buttons">
-                <!-- Dynamically populated -->
-            </div>
-            <div style="display:flex; align-items:center; gap:12px;">
-                <span class="counter" id="counter"></span>
-                <button class="btn-search-toggle" id="search-toggle" title="Search">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                    </svg>
-                </button>
-            </div>
+        <div class="tabs-container" id="year-tabs"></div>
+        <div class="filter-buttons">
+            <button class="btn-filter" onclick="openPanel('notes')">Notes</button>
+            <button class="btn-filter" onclick="openPanel('rating')">Rating</button>
+            <button class="btn-filter" onclick="openPanel('decade')">Decade</button>
+            <button class="btn-filter" onclick="openPanel('all')">All Filters</button>
+            <button class="btn-search-toggle" id="btn-search-toggle" onclick="toggleSearch()" title="Search">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="search-row" id="search-row" style="display:none">
+        <div class="search-bar-wrapper">
+            <input type="text" id="book-search-input" placeholder="Search title or author…" oninput="onBookSearch()" autocomplete="off">
+            <button class="search-clear" onclick="clearSearch()" title="Clear">×</button>
         </div>
     </div>
 
-    <!-- Book Grid -->
+    <!-- MAIN CONTENT -->
     <div class="main-content-wrapper">
+        <div class="control-bar">
+            <div class="counter" id="count-display">0 Books Read</div>
+        </div>
         <div class="grid" id="book-grid"></div>
     </div>
 
-    <!-- Side Panel Overlay -->
-    <div class="panel-overlay" id="panel-overlay"></div>
-
-    <!-- Side Panel -->
+    <!-- SIDE PANEL (Filters) -->
+    <div class="panel-backdrop" id="backdrop" onclick="closePanel()"></div>
     <div class="side-panel" id="side-panel">
-        <button class="panel-close" id="panel-close">×</button>
-        <div id="panel-cover-area"></div>
-        <div class="panel-body">
-            <div class="panel-meta-row" id="panel-meta-row"></div>
-            <h2 class="panel-title" id="panel-title"></h2>
-            <p class="panel-author" id="panel-author"></p>
-            <div class="panel-rating-row" id="panel-stats"></div>
-            <hr class="panel-divider">
-            <div class="panel-review-label">My Notes</div>
-            <div class="panel-review" id="panel-review"></div>
-            <textarea class="panel-review-edit" id="panel-review-edit"></textarea>
-            <div class="panel-edit-actions" id="panel-edit-actions">
-                <button class="btn-edit primary" id="btn-save">Save</button>
-                <button class="btn-edit" id="btn-cancel">Cancel</button>
-            </div>
-            <div class="panel-genres" id="panel-genres"></div>
+        <div class="panel-header">
+            <div class="panel-title">Filters</div>
+            <button class="btn-close" onclick="closePanel()">&times;</button>
         </div>
+        <div class="panel-content">
+            <!-- Sort -->
+            <div class="accordion-item" id="acc-sort">
+                <div class="accordion-header" onclick="toggleAccordion('acc-sort')">Sort By <span class="icon-plus">+</span></div>
+                <div class="accordion-content">
+                    <div class="checkbox-group" id="sort-options">
+                        <label class="checkbox-label"><input type="radio" name="sort" value="date-new" checked onchange="applyFilters()"> Newest Read</label>
+                        <label class="checkbox-label"><input type="radio" name="sort" value="date-old" onchange="applyFilters()"> Oldest Read</label>
+                        <label class="checkbox-label"><input type="radio" name="sort" value="rate-high" onchange="applyFilters()"> Rating High → Low</label>
+                        <label class="checkbox-label"><input type="radio" name="sort" value="rate-low" onchange="applyFilters()"> Rating Low → High</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Notes -->
+            <div class="accordion-item" id="acc-notes">
+                <div class="accordion-header" onclick="toggleAccordion('acc-notes')">Notes <span class="icon-plus">+</span></div>
+                <div class="accordion-content">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" id="filter-notes" onchange="applyFilters()"> With Notes Only</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Rating -->
+            <div class="accordion-item" id="acc-rating">
+                <div class="accordion-header" onclick="toggleAccordion('acc-rating')">Rating <span class="icon-plus">+</span></div>
+                <div class="accordion-content">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" class="filter-cb" data-category="rating" value="rated" onchange="applyFilters()"> Rated Only</label>
+                        <label class="checkbox-label"><input type="checkbox" class="filter-cb" data-category="rating" value="5" onchange="applyFilters()"> ★★★★★ (5 stars)</label>
+                        <label class="checkbox-label"><input type="checkbox" class="filter-cb" data-category="rating" value="4" onchange="applyFilters()"> ★★★★☆ (4 stars)</label>
+                        <label class="checkbox-label"><input type="checkbox" class="filter-cb" data-category="rating" value="3" onchange="applyFilters()"> ★★★☆☆ (3 stars)</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Decade -->
+            <div class="accordion-item" id="acc-decade">
+                <div class="accordion-header" onclick="toggleAccordion('acc-decade')">Publication Decade <span class="icon-plus">+</span></div>
+                <div class="accordion-content"><div class="checkbox-group" id="container-decade"></div></div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button class="btn-action" onclick="clearAllFilters()">Clear All</button>
+            <button class="btn-action primary" onclick="closePanel()">Done</button>
+        </div>
+    </div>
+
+    <!-- CARD MODAL -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+        <div class="card-modal" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+            <div id="modal-cover-area" class="modal-poster"></div>
+            <div class="modal-body">
+                <div class="modal-watch-date" id="modal-watch-date"></div>
+                <div class="modal-title" id="modal-title"></div>
+                <div class="modal-sub" id="modal-sub"></div>
+                <div class="modal-notes-view" id="modal-notes-view"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>© 2026 Chao Wu</div>
     </div>
 
     <script>
         let allBooks = [];
-        let activeYear = 'All';
-        let activeGenre = 'All';
-        let searchQuery = '';
-        let openBookIndex = null;
+        let filteredBooks = [];
+        let currentTabBooks = [];
+        let activeTabYear = null;
 
         fetch('books.json')
             .then(r => r.json())
-            .then(data => {
-                allBooks = data;
-                init();
+            .then(books => {
+                allBooks = books;
+                renderFeatured(allBooks);
+                setupTabs(allBooks);
+                populateDynamicFilters();
+
+                // Auto-select newest year that has books with dates
+                const datedBooks = allBooks.filter(b => b.date_sort && b.date_sort !== '0000-00-00');
+                if (datedBooks.length > 0) {
+                    const newestYear = [...new Set(datedBooks.map(b => b.date_sort.substring(0,4)))].sort().reverse()[0];
+                    switchTab(newestYear);
+                } else {
+                    switchTab('all');
+                }
             })
-            .catch(() => {
-                document.getElementById('book-grid').innerHTML =
-                    '<div class="empty-state">No books.json found. Run build_data.py first.</div>';
+            .catch(err => {
+                document.getElementById('book-grid').innerHTML = '<p style="padding:40px;opacity:0.5;font-style:italic;">No books.json found.</p>';
             });
 
-        function init() {
-            renderFeatured();
-            buildYearTabs();
-            buildGenreFilters();
-            renderGrid();
+        function renderFeatured(books) {
+            const dated = books.filter(b => b.date_sort && b.date_sort !== '0000-00-00');
+            if (dated.length === 0) return;
+            const latest = [...dated].sort((a,b) => b.date_sort.localeCompare(a.date_sort))[0];
+            if (!latest) return;
+
+            document.getElementById('featured-section').style.display = 'block';
+
+            const coverWrapper = document.getElementById('f-cover-wrapper');
+            if (latest.cover) {
+                coverWrapper.innerHTML = `<img id="f-img" src="${latest.cover}" alt="${latest.title}">`;
+                coverWrapper.className = 'featured-poster';
+            } else {
+                coverWrapper.innerHTML = '📖';
+                coverWrapper.className = 'featured-poster-placeholder';
+            }
+
+            document.getElementById('f-date').innerText = latest.date_display || '';
+            document.getElementById('f-title').innerText = latest.title;
+            document.getElementById('f-author').innerText = latest.author || '';
+            const r = getRating(latest);
+            document.getElementById('f-rating').innerText = r > 0
+                ? '★'.repeat(r) + '☆'.repeat(5 - r)
+                : '';
+            let notes = latest.review;
+            if (!notes || notes === 'nan') notes = 'No notes added.';
+            document.getElementById('f-notes').innerHTML = `&ldquo;${notes}&rdquo;`;
         }
 
-        /* --- FEATURED --- */
-        function renderFeatured() {
-            const recent = allBooks.find(b => b.date_sort && b.date_sort !== '0000-00-00') || allBooks[0];
-            if (!recent) return;
-            const stars = recent.rating > 0 ? '★'.repeat(parseInt(recent.rating)) + '☆'.repeat(5 - parseInt(recent.rating)) : '';
-            const coverHtml = recent.cover
-                ? `<div class="featured-cover"><img src="${recent.cover}" alt="${recent.title}" loading="lazy"></div>`
-                : `<div class="featured-cover-placeholder">📖</div>`;
-
-            document.getElementById('featured-content').innerHTML = `
-                ${coverHtml}
-                <div class="featured-info">
-                    <span class="f-date">${recent.date_display || ''}</span>
-                    <h2 class="f-title">${recent.title}</h2>
-                    <p class="f-author">${recent.author || ''}</p>
-                    ${stars ? `<div class="f-rating">${stars}</div>` : ''}
-                    ${recent.review ? `<p class="f-notes">${recent.review.substring(0, 300)}${recent.review.length > 300 ? '…' : ''}</p>` : ''}
-                </div>
-            `;
-        }
-
-        /* --- YEAR TABS --- */
-        function buildYearTabs() {
-            const years = [...new Set(allBooks.map(b => b.date_sort?.substring(0, 4)).filter(y => y && y !== '0000'))].sort().reverse();
-            const container = document.getElementById('tabs-container');
-            const all = document.createElement('button');
-            all.className = 'tab-btn active';
-            all.textContent = 'All';
-            all.onclick = () => setYear('All');
-            container.appendChild(all);
-
-            years.forEach(y => {
-                const btn = document.createElement('button');
-                btn.className = 'tab-btn';
-                btn.textContent = y;
-                btn.onclick = () => setYear(y);
-                container.appendChild(btn);
-            });
-        }
-
-        function setYear(year) {
-            activeYear = year;
-            document.querySelectorAll('.tab-btn').forEach(b => {
-                b.classList.toggle('active', b.textContent === year);
-            });
-            renderGrid();
-        }
-
-        /* --- GENRE FILTERS --- */
-        function buildGenreFilters() {
-            const genreCounts = {};
-            allBooks.forEach(b => {
-                (b.genres || []).forEach(g => {
-                    genreCounts[g] = (genreCounts[g] || 0) + 1;
-                });
-            });
-            // Show top genres (at least 2 books)
-            const topGenres = Object.entries(genreCounts)
-                .filter(([, c]) => c >= 2)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 8)
-                .map(([g]) => g);
-
-            const container = document.getElementById('filter-buttons');
+        function setupTabs(books) {
+            const container = document.getElementById('year-tabs');
             container.innerHTML = '';
 
-            const allBtn = document.createElement('button');
-            allBtn.className = 'btn-filter active';
-            allBtn.textContent = 'All';
-            allBtn.onclick = () => setGenre('All');
-            container.appendChild(allBtn);
+            const datedBooks = books.filter(b => b.date_sort && b.date_sort !== '0000-00-00');
+            const allYears = [...new Set(datedBooks.map(b => b.date_sort.substring(0,4)))].sort().reverse();
+            const recentYears = allYears.filter(y => parseInt(y) > 2018);
+            const hasOlder = allYears.some(y => parseInt(y) <= 2018);
+            const hasUndated = books.some(b => !b.date_sort || b.date_sort === '0000-00-00');
 
-            topGenres.forEach(g => {
+            recentYears.forEach(year => {
                 const btn = document.createElement('button');
-                btn.className = 'btn-filter';
-                btn.textContent = g.replace(/-/g, ' ');
-                btn.dataset.genre = g;
-                btn.onclick = () => setGenre(g);
+                btn.className = 'tab-btn';
+                btn.innerText = year;
+                btn.onclick = () => switchTab(year);
+                btn.dataset.year = year;
                 container.appendChild(btn);
             });
-        }
 
-        function setGenre(genre) {
-            activeGenre = genre;
-            document.querySelectorAll('.btn-filter').forEach(b => {
-                b.classList.toggle('active',
-                    b.textContent.replace(/ /g, '-') === genre || (genre === 'All' && b.textContent === 'All')
-                );
-            });
-            renderGrid();
-        }
-
-        /* --- SEARCH --- */
-        document.getElementById('search-toggle').addEventListener('click', () => {
-            const row = document.getElementById('search-row');
-            const btn = document.getElementById('search-toggle');
-            const visible = row.style.display !== 'none';
-            row.style.display = visible ? 'none' : 'block';
-            btn.classList.toggle('active', !visible);
-            if (!visible) document.getElementById('search-input').focus();
-            else { searchQuery = ''; document.getElementById('search-input').value = ''; renderGrid(); }
-        });
-
-        document.getElementById('search-input').addEventListener('input', e => {
-            searchQuery = e.target.value.toLowerCase();
-            document.getElementById('search-clear').style.display = searchQuery ? 'block' : 'none';
-            renderGrid();
-        });
-
-        document.getElementById('search-clear').addEventListener('click', () => {
-            searchQuery = '';
-            document.getElementById('search-input').value = '';
-            document.getElementById('search-clear').style.display = 'none';
-            renderGrid();
-        });
-
-        /* --- RENDER GRID --- */
-        function getFiltered() {
-            return allBooks.filter(b => {
-                const yearOk = activeYear === 'All' || (b.date_sort && b.date_sort.startsWith(activeYear));
-                const genreOk = activeGenre === 'All' || (b.genres || []).includes(activeGenre);
-                const searchOk = !searchQuery ||
-                    (b.title || '').toLowerCase().includes(searchQuery) ||
-                    (b.author || '').toLowerCase().includes(searchQuery);
-                return yearOk && genreOk && searchOk;
-            });
-        }
-
-        function renderGrid() {
-            const filtered = getFiltered();
-            document.getElementById('counter').textContent = `${filtered.length} book${filtered.length !== 1 ? 's' : ''}`;
-            const grid = document.getElementById('book-grid');
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '<div class="empty-state">No books found.</div>';
-                return;
+            if (hasOlder) {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn';
+                btn.innerText = '2018 & Before';
+                btn.onclick = () => switchTab('earlier');
+                btn.dataset.year = 'earlier';
+                container.appendChild(btn);
             }
 
-            grid.innerHTML = filtered.map((book, i) => {
-                const idx = allBooks.indexOf(book);
-                const stars = book.rating > 0 ? '★'.repeat(parseInt(book.rating)) + '☆'.repeat(5 - parseInt(book.rating)) : '';
-                const imgHtml = book.cover
-                    ? `<img src="${book.cover}" alt="${book.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                       <div class="card-placeholder" style="display:none;">
-                           <span class="ph-spine">${book.title}</span>
-                           <span class="ph-author">${book.author || ''}</span>
-                       </div>`
-                    : `<div class="card-placeholder">
-                           <span class="ph-spine">${book.title}</span>
-                           <span class="ph-author">${book.author || ''}</span>
-                       </div>`;
+            if (hasUndated) {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn';
+                btn.innerText = 'All';
+                btn.onclick = () => switchTab('all');
+                btn.dataset.year = 'all';
+                container.appendChild(btn);
+            }
+        }
 
-                return `
-                <div class="card">
-                    <div class="card-image-wrapper" onclick="openPanel(${idx})">
+        function switchTab(tabId) {
+            activeTabYear = tabId;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.year === tabId);
+            });
+
+            if (tabId === 'all') {
+                currentTabBooks = allBooks;
+            } else if (tabId === 'earlier') {
+                currentTabBooks = allBooks.filter(b => {
+                    const y = parseInt(b.date_sort?.substring(0,4));
+                    return y <= 2018 && y > 0;
+                });
+            } else {
+                currentTabBooks = allBooks.filter(b => b.date_sort?.startsWith(tabId));
+            }
+
+            document.querySelector('input[name="sort"][value="date-new"]').checked = true;
+            applyFilters();
+        }
+
+        // --- PANEL & FILTER LOGIC ---
+        function getScrollbarWidth() { return window.innerWidth - document.documentElement.clientWidth; }
+        function openPanel(targetSection) {
+            document.body.style.paddingRight = `${getScrollbarWidth()}px`;
+            document.body.classList.add('panel-open');
+            document.getElementById('backdrop').classList.add('open');
+            document.getElementById('side-panel').classList.add('open');
+            if (targetSection && targetSection !== 'all') {
+                const el = document.getElementById(`acc-${targetSection}`);
+                if (el) el.classList.add('active');
+            }
+        }
+        function closePanel() {
+            document.body.style.paddingRight = '';
+            document.body.classList.remove('panel-open');
+            document.getElementById('backdrop').classList.remove('open');
+            document.getElementById('side-panel').classList.remove('open');
+        }
+        function toggleAccordion(id) { document.getElementById(id).classList.toggle('active'); }
+
+        function populateDynamicFilters() {
+            const decades = new Set();
+            allBooks.forEach(b => {
+                const yr = parseInt(b.year_published);
+                if (!isNaN(yr) && yr > 0) decades.add(Math.floor(yr / 10) * 10);
+            });
+            const dec = document.getElementById('container-decade');
+            Array.from(decades).sort((a,b) => b - a).forEach(d => {
+                dec.innerHTML += `<label class="checkbox-label"><input type="checkbox" class="filter-cb" data-category="decade" value="${d}" onchange="applyFilters()"> ${d}s</label>`;
+            });
+        }
+
+        function clearAllFilters() {
+            document.querySelectorAll('.filter-cb').forEach(cb => cb.checked = false);
+            document.getElementById('filter-notes').checked = false;
+            document.querySelector('input[name="sort"][value="date-new"]').checked = true;
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const checkedRatings = Array.from(document.querySelectorAll('input[data-category="rating"]:checked')).map(cb => cb.value);
+            const checkedDecades = Array.from(document.querySelectorAll('input[data-category="decade"]:checked')).map(cb => cb.value);
+            const sortVal = document.querySelector('input[name="sort"]:checked').value;
+            const notesChecked = document.getElementById('filter-notes').checked;
+
+            filteredBooks = currentTabBooks.filter(b => {
+                if (notesChecked && (!b.review || b.review === 'nan' || b.review.trim() === '')) return false;
+                if (checkedRatings.length > 0) {
+                    if (checkedRatings.includes('rated') && getRating(b) === 0) return false;
+                    const specificStars = checkedRatings.filter(v => v !== 'rated');
+                    if (specificStars.length > 0 && !specificStars.includes(String(getRating(b)))) return false;
+                }
+                if (checkedDecades.length > 0) {
+                    const yr = parseInt(b.year_published);
+                    if (isNaN(yr)) return false;
+                    const d = Math.floor(yr / 10) * 10;
+                    if (!checkedDecades.includes(d.toString())) return false;
+                }
+                return true;
+            });
+
+            filteredBooks.sort((a, b) => {
+                if (sortVal === 'date-new') return (b.date_sort || '').localeCompare(a.date_sort || '');
+                if (sortVal === 'date-old') return (a.date_sort || '').localeCompare(b.date_sort || '');
+                if (sortVal === 'rate-high') return getRating(b) - getRating(a);
+                if (sortVal === 'rate-low') {
+                    const rA = getRating(a) === 0 ? 100 : getRating(a);
+                    const rB = getRating(b) === 0 ? 100 : getRating(b);
+                    return rA - rB;
+                }
+            });
+
+            document.getElementById('count-display').innerText = `${filteredBooks.length} book${filteredBooks.length !== 1 ? 's' : ''}`;
+
+            const grid = document.getElementById('book-grid');
+            grid.innerHTML = '';
+            renderGrid(filteredBooks, grid);
+
+            updateButtonState('notes', notesChecked);
+            updateButtonState('rating', checkedRatings.length > 0);
+            updateButtonState('decade', checkedDecades.length > 0);
+        }
+
+        function updateButtonState(type, isActive) {
+            const btn = document.querySelector(`button[onclick="openPanel('${type}')"]`);
+            if (btn) btn.classList.toggle('active', isActive);
+        }
+
+        function getRating(book) {
+            if (!book.rating) return 0;
+            const n = parseFloat(String(book.rating).replace('/5', ''));
+            return isNaN(n) ? 0 : n;
+        }
+
+        function renderGrid(books, grid) {
+            books.forEach(book => {
+                const el = document.createElement('div');
+                el.className = 'card';
+                const reviewText = (!book.review || book.review === 'nan') ? '' : book.review;
+                const r = getRating(book);
+                const ratingDisplay = r > 0 ? '★'.repeat(r) + '☆'.repeat(5 - r) : 'Unrated';
+                const yearDisplay = book.year_published || '';
+
+                const imgHtml = book.cover
+                    ? `<img src="${book.cover}" alt="${book.title}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\\'card-placeholder\\'><span class=\\'ph-spine\\'>${book.title.replace(/'/g,"&#39;")}</span><span class=\\'ph-author\\'>${(book.author||'').replace(/'/g,"&#39;")}</span></div>'">`
+                    : `<div class="card-placeholder"><span class="ph-spine">${book.title}</span><span class="ph-author">${book.author || ''}</span></div>`;
+
+                el.innerHTML = `
+                    <div class="card-image-wrapper">
                         ${imgHtml}
                         <div class="info">
-                            ${stars ? `<div class="info-rating">${stars}</div>` : ''}
                             <div class="info-date">${book.date_display || ''}</div>
+                            <div class="info-notes">${reviewText}</div>
                         </div>
                     </div>
-                    <p class="card-title" onclick="openPanel(${idx})">${book.title}</p>
-                    <p class="card-author">${book.author || ''}</p>
-                </div>`;
-            }).join('');
+                    <div class="card-details">
+                        <div class="card-title">${book.title}</div>
+                        <div class="card-meta-row"><span>${yearDisplay}</span><span class="card-rating">${ratingDisplay}</span></div>
+                        <div class="card-author">${book.author || ''}</div>
+                        <div class="card-watched">${book.date_display || ''}</div>
+                    </div>
+                `;
+                el.querySelector('.card-image-wrapper').addEventListener('click', () => openModal(book));
+                grid.appendChild(el);
+            });
         }
 
-        /* --- SIDE PANEL --- */
-        function openPanel(idx) {
-            openBookIndex = idx;
-            const book = allBooks[idx];
+        // --- MODAL ---
+        function openModal(book) {
+            const r = getRating(book);
+            const ratingDisplay = r > 0 ? '★'.repeat(r) + '☆'.repeat(5 - r) : 'Unrated';
+            const notes = (!book.review || book.review === 'nan') ? '' : book.review;
 
-            // Cover
-            const coverArea = document.getElementById('panel-cover-area');
+            const coverArea = document.getElementById('modal-cover-area');
             if (book.cover) {
-                coverArea.innerHTML = `<img class="panel-cover" src="${book.cover}" alt="${book.title}">`;
+                coverArea.innerHTML = `<img src="${book.cover}" alt="${book.title}" style="width:100%;height:auto;display:block;box-shadow:var(--shadow-retro);">`;
             } else {
-                coverArea.innerHTML = `<div class="panel-cover-placeholder">📖</div>`;
+                coverArea.innerHTML = `<div class="modal-poster-placeholder">📖</div>`;
             }
 
-            // Meta tags (year, pages)
-            const metaRow = document.getElementById('panel-meta-row');
-            let tags = [];
-            if (book.year_published) tags.push(book.year_published);
-            if (book.pages) tags.push(`${book.pages} pages`);
-            metaRow.innerHTML = tags.map(t => `<span class="panel-tag">${t}</span>`).join('');
+            document.getElementById('modal-watch-date').innerText = book.date_display || '';
+            document.getElementById('modal-title').innerText = book.title;
 
-            document.getElementById('panel-title').textContent = book.title;
-            document.getElementById('panel-author').textContent = book.author || '';
+            const sub = [book.year_published, ratingDisplay, book.pages ? `${book.pages} pages` : ''].filter(Boolean).join(' · ');
+            document.getElementById('modal-sub').innerText = (book.author ? book.author + ' · ' : '') + sub;
 
-            // Stats
-            const statsRow = document.getElementById('panel-stats');
-            let statsHtml = '';
-            if (book.rating && book.rating !== '0') {
-                statsHtml += `<span class="panel-stat"><strong>${'★'.repeat(parseInt(book.rating))}${'☆'.repeat(5 - parseInt(book.rating))}</strong></span>`;
-            }
-            if (book.date_display) {
-                statsHtml += `<span class="panel-stat">Read: <strong>${book.date_display}</strong></span>`;
-            }
-            statsRow.innerHTML = statsHtml;
+            const notesEl = document.getElementById('modal-notes-view');
+            notesEl.innerText = notes || 'No notes added.';
+            notesEl.classList.toggle('empty', !notes);
 
-            // Review
-            renderPanelReview(book);
-
-            // Genres
-            const genresEl = document.getElementById('panel-genres');
-            genresEl.innerHTML = (book.genres || []).map(g =>
-                `<span class="panel-genre-tag">${g.replace(/-/g, ' ')}</span>`
-            ).join('');
-
-            // Open
-            document.getElementById('side-panel').classList.add('open');
-            document.getElementById('panel-overlay').classList.add('visible');
+            document.getElementById('modal-overlay').classList.add('open');
             document.body.classList.add('panel-open');
         }
 
-        function renderPanelReview(book) {
-            const reviewEl = document.getElementById('panel-review');
-            const editEl = document.getElementById('panel-review-edit');
-            const actionsEl = document.getElementById('panel-edit-actions');
-            editEl.style.display = 'none';
-            actionsEl.style.display = 'none';
-            reviewEl.style.display = 'block';
-
-            if (book.review) {
-                reviewEl.textContent = book.review;
-                reviewEl.className = 'panel-review';
-            } else {
-                reviewEl.innerHTML = '<span class="panel-review-empty">No notes yet. Click to add.</span>';
-            }
-
-            reviewEl.onclick = () => {
-                reviewEl.style.display = 'none';
-                editEl.value = book.review || '';
-                editEl.style.display = 'block';
-                actionsEl.style.display = 'flex';
-                editEl.focus();
-            };
-        }
-
-        document.getElementById('btn-save').addEventListener('click', () => {
-            if (openBookIndex === null) return;
-            const book = allBooks[openBookIndex];
-            book.review = document.getElementById('panel-review-edit').value.trim();
-            renderPanelReview(book);
-            saveBooks();
-        });
-
-        document.getElementById('btn-cancel').addEventListener('click', () => {
-            if (openBookIndex === null) return;
-            renderPanelReview(allBooks[openBookIndex]);
-        });
-
-        function saveBooks() {
-            // In a static site, changes are in-memory only.
-            // To persist, copy the JSON output and update books.json manually.
-            console.log('Updated books data:', JSON.stringify(allBooks, null, 2));
-        }
-
-        function closePanel() {
-            document.getElementById('side-panel').classList.remove('open');
-            document.getElementById('panel-overlay').classList.remove('visible');
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
             document.body.classList.remove('panel-open');
-            openBookIndex = null;
         }
 
-        document.getElementById('panel-close').addEventListener('click', closePanel);
-        document.getElementById('panel-overlay').addEventListener('click', closePanel);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+        // --- SEARCH ---
+        let searchActive = false;
+
+        function toggleSearch() {
+            searchActive = !searchActive;
+            const row = document.getElementById('search-row');
+            const btn = document.getElementById('btn-search-toggle');
+            if (searchActive) {
+                row.style.display = 'block';
+                document.getElementById('book-search-input').focus();
+                btn.classList.add('active');
+            } else {
+                clearSearch();
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('search-row').style.display = 'none';
+            document.getElementById('book-search-input').value = '';
+            document.getElementById('btn-search-toggle').classList.remove('active');
+            searchActive = false;
+            applyFilters();
+        }
+
+        function onBookSearch() {
+            const query = document.getElementById('book-search-input').value.trim().toLowerCase();
+            if (!query) { applyFilters(); return; }
+            const results = allBooks.filter(b =>
+                (b.title && b.title.toLowerCase().includes(query)) ||
+                (b.author && b.author.toLowerCase().includes(query))
+            );
+            const grid = document.getElementById('book-grid');
+            grid.innerHTML = '';
+            renderGrid(results, grid);
+            document.getElementById('count-display').innerText =
+                `${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`;
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                if (document.getElementById('modal-overlay').classList.contains('open')) closeModal();
+                else if (document.getElementById('search-row').style.display !== 'none') clearSearch();
+            }
+        });
     </script>
 </body>
 </html>
