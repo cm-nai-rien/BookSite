@@ -47,80 +47,109 @@ def clean_category(cat):
 # COVER + CATEGORY FETCHING
 # ---------------------------------------------------------------------------
 
-def google_books_query(params):
-    """Hit Google Books API and return the first volume item, or None."""
+def google_books_query(params, max_results=1):
+    """Hit Google Books API and return items list, or []."""
     base = 'https://www.googleapis.com/books/v1/volumes'
     if GOOGLE_API_KEY:
         params['key'] = GOOGLE_API_KEY
+    params['maxResults'] = max_results
     try:
         r = requests.get(base, params=params, timeout=6)
         data = r.json()
         if data.get('totalItems', 0) > 0 and data.get('items'):
-            return data['items'][0]
+            return data['items']
     except Exception:
         pass
-    return None
+    return []
 
 def extract_from_volume(item):
-    """Pull cover URL and categories from a Google Books volume item."""
+    """Pull cover URL, ISBN, and categories from a Google Books volume item."""
     info = item.get('volumeInfo', {})
     img  = info.get('imageLinks', {})
-    cover = (img.get('thumbnail') or img.get('smallThumbnail') or '')
+    cover = (img.get('extraLarge') or img.get('large') or img.get('medium') or
+             img.get('thumbnail') or img.get('smallThumbnail') or '')
     if cover:
-        # Force HTTPS, remove edge curl, bump zoom for larger image
         cover = cover.replace('http://', 'https://')
         cover = re.sub(r'&edge=\w+', '', cover)
-        cover = cover.replace('zoom=1', 'zoom=0')
+        cover = re.sub(r'zoom=\d+', 'zoom=0', cover)
+
+    # Extract ISBN-13 (preferred) or ISBN-10
+    isbn = ''
+    for id_obj in info.get('industryIdentifiers', []):
+        if id_obj['type'] == 'ISBN_13':
+            isbn = id_obj['identifier']
+            break
+    if not isbn:
+        for id_obj in info.get('industryIdentifiers', []):
+            if id_obj['type'] == 'ISBN_10':
+                isbn = id_obj['identifier']
+                break
+
     categories = [clean_category(c) for c in info.get('categories', [])]
-    # Deduplicate while preserving order
     seen = set()
     categories = [c for c in categories if not (c in seen or seen.add(c))]
-    return cover or None, categories
+    return cover or None, isbn or None, categories
 
 def get_book_data(isbn, title, author):
     """
     Try in order:
       1. Open Library by ISBN (fast, high-res)
       2. Google Books by ISBN
-      3. Google Books by title + author (for books without ISBN)
-    Returns (cover_url, categories).
+      3. Google Books by title + author
+      4. Google Books by original English title (for translated books)
+    Returns (cover_url, found_isbn, categories).
     """
-    # --- 1. Open Library ---
+    # --- 1. Open Library by ISBN ---
     if isbn:
         ol_url = f'https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg'
         try:
             r = requests.head(ol_url, timeout=5)
             if r.status_code == 200 and int(r.headers.get('content-length', 0)) > 2000:
-                return ol_url, []   # OL has no category data; will fill via Google Books below
+                return ol_url, isbn, []
         except Exception:
             pass
 
     # --- 2. Google Books by ISBN ---
     if isbn:
-        item = google_books_query({'q': f'isbn:{isbn}'})
-        if item:
-            cover, cats = extract_from_volume(item)
+        items = google_books_query({'q': f'isbn:{isbn}'})
+        if items:
+            cover, found_isbn, cats = extract_from_volume(items[0])
             if cover:
-                return cover, cats
+                return cover, found_isbn or isbn, cats
 
     # --- 3. Google Books by title + author ---
     if title:
-        q = f'intitle:{title}'
+        queries = []
         if author:
-            # Use only first author's last name to avoid noise
             last = author.split(',')[0].split()[-1] if author else ''
             if last:
-                q += f'+inauthor:{last}'
-        item = google_books_query({'q': q})
-        if item:
-            cover, cats = extract_from_volume(item)
-            return cover, cats   # return even if no cover (we still get categories)
+                queries.append(f'intitle:{title}+inauthor:{last}')
+        queries.append(title if not author else f'{title} {author}')
+        queries.append(title)  # title only as last resort
 
-    return None, []
+        for q in queries:
+            items = google_books_query({'q': q}, max_results=5)
+            for item in items:
+                cover, found_isbn, cats = extract_from_volume(item)
+                if cover:
+                    return cover, found_isbn or isbn or None, cats
+            time.sleep(0.1)
+
+    return None, isbn or None, []
 
 # ---------------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------------
+
+# Load existing books to enable incremental updates
+existing_books = {}
+try:
+    with open(OUTPUT_JSON, encoding='utf-8') as f:
+        for book in json.load(f):
+            existing_books[book['title']] = book
+    print(f'Loaded {len(existing_books)} existing books from {OUTPUT_JSON}.')
+except FileNotFoundError:
+    print(f'No existing {OUTPUT_JSON} found — building from scratch.')
 
 try:
     try:
@@ -132,13 +161,21 @@ except Exception as e:
 
 df = df.fillna('')
 read_df = df[df['Exclusive Shelf'].str.strip() == 'read'].copy()
-print(f'Found {len(read_df)} books on "read" shelf. Processing...\n')
+print(f'Found {len(read_df)} books on "read" shelf.\n')
 
 book_list = []
+new_count = 0
+skipped_count = 0
 
 for _, row in read_df.iterrows():
-    title  = str(row.get('Title', '')).strip()
+    title = str(row.get('Title', '')).strip()
     if not title: continue
+
+    # --- Incremental: reuse existing entry if already processed ---
+    if title in existing_books:
+        book_list.append(existing_books[title])
+        skipped_count += 1
+        continue
 
     author    = str(row.get('Author', '')).strip()
     isbn13    = clean_isbn(str(row.get('ISBN13', '')))
@@ -155,9 +192,12 @@ for _, row in read_df.iterrows():
     date_display, date_sort = parse_date(row.get('Date Read', ''))
 
     short = title[:40]
-    print(f'  [{short:<40}] isbn={isbn_use or "N/A":<14}', end=' ')
+    print(f'  [NEW] [{short:<40}] isbn={isbn_use or "N/A":<14}', end=' ')
 
-    cover, categories = get_book_data(isbn_use, title, author)
+    cover, found_isbn, categories = get_book_data(isbn_use, title, author)
+
+    # Use found ISBN if original was missing
+    final_isbn = isbn_use or found_isbn or ''
 
     # Merge Goodreads shelves + Google Books categories (deduplicated)
     all_genres = list(dict.fromkeys(shelves + categories))
@@ -176,9 +216,9 @@ for _, row in read_df.iterrows():
         'pages':          pages,
         'year_published': year_pub,
         'genres':         all_genres,
-        'isbn':           isbn_use,
+        'isbn':           final_isbn,
     })
-
+    new_count += 1
     time.sleep(0.2)
 
 book_list.sort(key=lambda b: b['date_sort'], reverse=True)
@@ -188,5 +228,5 @@ with open(OUTPUT_JSON, 'w', encoding='utf-8') as f:
 
 total  = len(book_list)
 covers = sum(1 for b in book_list if b['cover'])
-cats   = sum(1 for b in book_list if b['genres'])
-print(f'\nDone! {total} books — {covers} with covers, {cats} with categories, {total - covers} still missing covers.')
+print(f'\nDone! {total} books total — {new_count} new, {skipped_count} unchanged.')
+print(f'Covers: {covers}/{total} | Missing: {total - covers}')
