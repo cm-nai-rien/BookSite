@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaos Book Admin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        :root {
+            --bg: #1a1510;
+            --panel: #131008;
+            --input-bg: #2e2518;
+            --border: #3d2409;
+            --text: #f5ead8;
+            --dim: #8a7a66;
+            --accent: #c4993f;
+            --accent-light: #e2c97e;
+            --color-red: #e05a4a;
+            --color-green: #6fbf73;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: "Outfit", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px 16px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        /* --- LOGIN --- */
+        #login-screen { text-align: center; }
+        .access-btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .access-btn-group input { text-align: center; width: 280px; max-width: 100%; }
+        .hint {
+            font-size: 0.75rem;
+            color: var(--dim);
+            margin: 0 0 6px;
+            text-align: left;
+            width: 280px;
+            max-width: 100%;
+            line-height: 1.4;
+        }
+
+        /* --- PANEL --- */
+        #admin-panel {
+            display: none;
+            width: 640px;
+            max-width: 100%;
+            background: var(--panel);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 500px) { #admin-panel { padding: 24px 18px; } }
+
+        .form-group { margin-bottom: 20px; }
+        .form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .form-row .form-group { flex: 1 1 140px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+        input::placeholder, textarea::placeholder { color: #6b5d4c; }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: #1a1510;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        button:hover { opacity: 0.9; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .link-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            padding: 0;
+            margin: 8px 0 0;
+            width: auto;
+            font-size: 0.8rem;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: block; text-align: center; margin-top: 12px; padding: 12px;
+            border: 1px solid var(--border); border-radius: 8px; color: var(--dim);
+            font-size: 0.85rem; text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* --- SEARCH --- */
+        .search-wrapper { position: relative; }
+        #search-input { padding-right: 36px; }
+
+        .search-spinner {
+            position: absolute; right: 12px; top: 50%;
+            width: 16px; height: 16px;
+            border: 2px solid #444; border-top-color: var(--accent); border-radius: 50%;
+            transform: translateY(-50%);
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+        #search-dropdown {
+            position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+            background: #1e1810;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            max-height: 380px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+        .search-result-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 14px;
+            cursor: pointer;
+            border-bottom: 1px solid #2a2117;
+            transition: background 0.15s;
+        }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item:hover, .search-result-item.highlighted { background: var(--input-bg); }
+        .result-cover, .result-cover-placeholder {
+            width: 36px; height: 54px; border-radius: 3px; background: #333; flex-shrink: 0; object-fit: cover;
+        }
+        .result-cover-placeholder { display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .result-info { flex: 1; min-width: 0; }
+        .result-title { font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .result-meta { font-size: 0.8rem; color: var(--dim); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .result-badge {
+            font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: bold;
+            text-transform: uppercase; flex-shrink: 0; letter-spacing: 0.5px;
+        }
+        .badge-google { background: rgba(196,153,63,0.2); color: var(--accent-light); }
+        .badge-ol     { background: rgba(111,191,115,0.15); color: var(--color-green); }
+        .dropdown-note { padding: 12px 14px; text-align: center; color: var(--dim); font-size: 0.85rem; }
+
+        /* --- DETAILS --- */
+        #details { display: none; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .details-top { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; }
+        .cover-box {
+            width: 110px; aspect-ratio: 2 / 3; flex-shrink: 0;
+            background: var(--input-bg); border-radius: 4px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--dim); font-size: 0.75rem; text-align: center; padding: 6px;
+        }
+        .cover-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .details-top-fields { flex: 1; min-width: 0; }
+        .details-top-fields .form-group { margin-bottom: 12px; }
+        @media (max-width: 500px) {
+            .details-top { flex-direction: column; align-items: center; }
+            .details-top-fields { width: 100%; }
+        }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .chip {
+            font-size: 0.75rem; padding: 4px 10px; border-radius: 999px;
+            border: 1px solid var(--border); color: var(--dim); background: transparent;
+            cursor: pointer; width: auto; margin: 0; text-transform: none; letter-spacing: 0; font-weight: normal;
+        }
+        .chip.on { background: rgba(196,153,63,0.2); border-color: var(--accent); color: var(--accent-light); }
+
+        /* --- STATUS --- */
+        #status-msg {
+            margin-top: 20px; padding: 12px 16px; border-radius: 8px;
+            font-size: 0.95rem; display: none; text-align: center;
+        }
+        #status-msg.success { background: rgba(111,191,115,0.12); color: var(--color-green); border: 1px solid var(--color-green); }
+        #status-msg.error   { background: rgba(224,90,74,0.12);  color: var(--color-red);   border: 1px solid var(--color-red); }
+        #status-msg.loading { background: rgba(196,153,63,0.12); color: var(--accent);      border: 1px solid var(--accent); }
+    </style>
+</head>
+<body>
+
+    <!-- 1. LOGIN -->
+    <div id="login-screen">
+        <h1>Chaos Book Portal</h1>
+        <div class="access-btn-group">
+            <input type="password" id="password-input" placeholder="Secret Key">
+            <input type="password" id="token-input" placeholder="GitHub Token">
+            <p class="hint">Fine-grained token with Contents: Read &amp; Write on the BookSite repo.</p>
+            <input type="password" id="gkey-input" placeholder="Google Books API Key (optional)">
+            <p class="hint">Free key from console.cloud.google.com (Books API). Without it, Google search can hit a shared daily limit. Remembered in this browser.</p>
+            <button onclick="checkAccess()" style="width: 200px; margin-top: 12px;">Enter</button>
+            <p id="error-msg" style="color: var(--color-red); display: none; margin-top: 10px;">Access Denied</p>
+        </div>
+    </div>
+
+    <!-- 2. ADMIN PANEL -->
+    <div id="admin-panel">
+        <h1>Add New Book</h1>
+
+        <div class="form-group">
+            <label>Find a book</label>
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="Title, author, or ISBN…" autocomplete="off" oninput="onSearchInput()">
+                <div class="search-spinner" id="search-spinner"></div>
+                <div id="search-dropdown"></div>
+            </div>
+            <button class="link-btn" onclick="enterManually()">Can't find it? Enter details by hand</button>
+        </div>
+
+        <div id="details">
+            <div class="details-top">
+                <div class="cover-box" id="cover-box">No cover</div>
+                <div class="details-top-fields">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" id="f-title">
+                    </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" id="f-author">
+                    </div>
+                    <div class="form-group">
+                        <label>Cover image URL</label>
+                        <input type="url" id="f-cover" placeholder="Paste an image link (e.g. from 博客來)" oninput="updateCoverPreview()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Pages</label>
+                    <input type="number" id="f-pages" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Year published</label>
+                    <input type="number" id="f-year">
+                </div>
+                <div class="form-group">
+                    <label>ISBN</label>
+                    <input type="text" id="f-isbn">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Genres (comma separated)</label>
+                <input type="text" id="f-genres" oninput="syncChips()">
+                <div class="chips" id="genre-chips"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Date read *</label>
+                    <input type="date" id="f-date">
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select id="f-rating">
+                        <option value="5">★★★★★</option>
+                        <option value="4" selected>★★★★☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="1">★☆☆☆☆</option>
+                        <option value="0">Unrated</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Review</label>
+                <textarea id="f-review" rows="4"></textarea>
+            </div>
+
+            <button onclick="addBookToSite()" id="add-btn">Add to Book List</button>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Book List</a>
+        <div id="status-msg"></div>
+    </div>
+
+    <script>
+        const SECRET_KEY  = 'chaos';
+        const GITHUB_REPO = 'cm-nai-rien/BookSite';
+        const BOOKS_FILE  = 'books.json';
+
+        let githubToken = '';
+        let googleKey = '';
+        let searchTimer = null;
+        let searchSeq = 0;
+        let highlightedIndex = -1;
+        let currentResults = [];
+        let knownGenres = [];
+
+        const $ = id => document.getElementById(id);
+
+        function storageGet(store, key) { try { return store.getItem(key) || ''; } catch (e) { return ''; } }
+        function storageSet(store, key, val) { try { val ? store.setItem(key, val) : store.removeItem(key); } catch (e) {} }
+
+        $('token-input').value = storageGet(sessionStorage, 'adminToken');
+        $('gkey-input').value  = storageGet(localStorage, 'googleBooksKey');
+
+        // ---------------------------------------------------------------
+        // 1. LOGIN
+        // ---------------------------------------------------------------
+        function checkAccess() {
+            const pwd = $('password-input').value;
+            const tok = $('token-input').value.trim();
+            if (pwd === SECRET_KEY && tok) {
+                githubToken = tok;
+                googleKey = $('gkey-input').value.trim();
+                storageSet(sessionStorage, 'adminToken', tok);
+                storageSet(localStorage, 'googleBooksKey', googleKey);
+                $('login-screen').style.display = 'none';
+                $('admin-panel').style.display = 'block';
+                $('search-input').focus();
+                loadKnownGenres();
+            } else {
+                $('error-msg').style.display = 'block';
+                $('error-msg').innerText = !tok ? 'GitHub token required' : 'Access Denied';
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && $('login-screen').style.display !== 'none') checkAccess();
+        });
+
+        // Genres already used on the site, offered as one-click chips
+        async function loadKnownGenres() {
+            try {
+                const books = await (await fetch(BOOKS_FILE, { cache: 'no-store' })).json();
+                const counts = {};
+                books.forEach(b => (b.genres || []).forEach(g => { counts[g] = (counts[g] || 0) + 1; }));
+                knownGenres = Object.keys(counts).sort((a, b) => counts[b] - counts[a]).slice(0, 24);
+                renderChips();
+            } catch (e) { /* chips are optional */ }
+        }
+
+        // ---------------------------------------------------------------
+        // 2. SEARCH: Google Books (main) + Open Library (backup)
+        // ---------------------------------------------------------------
+        function onSearchInput() {
+            clearTimeout(searchTimer);
+            const q = $('search-input').value.trim();
+            if (q.length < 2) { closeDropdown(); return; }
+            searchTimer = setTimeout(() => runSearch(q), 400);
+        }
+
+        function asIsbn(q) {
+            const digits = q.replace(/[-\s]/g, '').toUpperCase();
+            return /^(\d{13}|\d{9}[\dX])$/.test(digits) ? digits : '';
+        }
+
+        async function runSearch(query) {
+            const seq = ++searchSeq;
+            $('search-spinner').style.display = 'block';
+            const isbn = asIsbn(query);
+
+            const [g, o] = await Promise.allSettled([searchGoogle(query, isbn), searchOpenLibrary(query, isbn)]);
+            if (seq !== searchSeq) return; // a newer search replaced this one
+            $('search-spinner').style.display = 'none';
+
+            const google = g.status === 'fulfilled' ? g.value : { results: [], note: 'Google Books search failed.' };
+            const ol     = o.status === 'fulfilled' ? o.value : [];
+
+            // Merge, dropping Open Library hits that duplicate a Google ISBN
+            const seen = new Set(google.results.map(r => r.isbn).filter(Boolean));
+            const merged = [...google.results, ...ol.filter(r => !r.isbn || !seen.has(r.isbn))];
+            currentResults = merged.slice(0, 10);
+            renderDropdown(currentResults, google.note);
+        }
+
+        async function searchGoogle(query, isbn) {
+            const params = new URLSearchParams({ q: isbn ? `isbn:${isbn}` : query, maxResults: '8', printType: 'books' });
+            if (googleKey) params.set('key', googleKey);
+            const res = await fetch(`https://www.googleapis.com/books/v1/volumes?${params}`);
+            if (res.status === 429) {
+                return { results: [], note: googleKey
+                    ? 'Google Books daily limit reached for your key.'
+                    : 'Google Books shared limit reached. Add a free API key on the login screen.' };
+            }
+            if (!res.ok) return { results: [], note: `Google Books error (${res.status}).` };
+            const data = await res.json();
+            return { results: (data.items || []).map(fromGoogle), note: '' };
+        }
+
+        function fromGoogle(item) {
+            const info = item.volumeInfo || {};
+            const img = info.imageLinks || {};
+            let cover = img.extraLarge || img.large || img.medium || img.thumbnail || img.smallThumbnail || '';
+            if (cover) {
+                cover = cover.replace('http://', 'https://').replace(/&edge=\w+/, '').replace(/zoom=\d+/, 'zoom=0');
+            }
+            const ids = info.industryIdentifiers || [];
+            const isbn = (ids.find(i => i.type === 'ISBN_13') || ids.find(i => i.type === 'ISBN_10') || {}).identifier || '';
+            const genres = [...new Set((info.categories || []).map(c => c.split('/')[0].trim()))];
+            return {
+                source: 'google',
+                title:  info.subtitle ? `${info.title}：${info.subtitle}` : (info.title || ''),
+                author: (info.authors || []).join(', '),
+                cover,
+                thumb:  (img.thumbnail || img.smallThumbnail || '').replace('http://', 'https://'),
+                isbn,
+                pages:  info.pageCount ? String(info.pageCount) : '',
+                year:   (info.publishedDate || '').substring(0, 4),
+                genres,
+            };
+        }
+
+        async function searchOpenLibrary(query, isbn) {
+            const params = new URLSearchParams({
+                limit: '5',
+                fields: 'title,subtitle,author_name,cover_i,isbn,first_publish_year,number_of_pages_median',
+            });
+            params.set(isbn ? 'isbn' : 'q', isbn || query);
+            const res = await fetch(`https://openlibrary.org/search.json?${params}`);
+            if (!res.ok) return [];
+            const data = await res.json();
+            return (data.docs || []).map(d => {
+                const isbns = d.isbn || [];
+                return {
+                    source: 'ol',
+                    title:  d.subtitle ? `${d.title}: ${d.subtitle}` : (d.title || ''),
+                    author: (d.author_name || []).join(', '),
+                    cover:  d.cover_i ? `https://covers.openlibrary.org/b/id/${d.cover_i}-L.jpg` : '',
+                    thumb:  d.cover_i ? `https://covers.openlibrary.org/b/id/${d.cover_i}-S.jpg` : '',
+                    isbn:   isbn || isbns.find(i => i.length === 13) || isbns[0] || '',
+                    pages:  d.number_of_pages_median ? String(d.number_of_pages_median) : '',
+                    year:   d.first_publish_year ? String(d.first_publish_year) : '',
+                    genres: [],
+                };
+            });
+        }
+
+        function renderDropdown(results, note) {
+            const dropdown = $('search-dropdown');
+            highlightedIndex = -1;
+            const noteHtml = note ? `<div class="dropdown-note">${escapeHtml(note)}</div>` : '';
+
+            if (results.length === 0) {
+                dropdown.innerHTML = noteHtml + '<div class="dropdown-note">No results. Try the ISBN, or enter the details by hand.</div>';
+                dropdown.style.display = 'block';
+                return;
+            }
+
+            dropdown.innerHTML = noteHtml + results.map((r, i) => {
+                const cover = r.thumb
+                    ? `<img class="result-cover" src="${escapeHtml(r.thumb)}" alt="" loading="lazy">`
+                    : `<div class="result-cover-placeholder">📖</div>`;
+                const meta = [r.author, r.year].filter(Boolean).join(' · ') || '—';
+                return `
+                <div class="search-result-item" data-index="${i}" onmousedown="selectResult(${i})">
+                    ${cover}
+                    <div class="result-info">
+                        <div class="result-title">${escapeHtml(r.title)}</div>
+                        <div class="result-meta">${escapeHtml(meta)}</div>
+                    </div>
+                    <span class="result-badge ${r.source === 'google' ? 'badge-google' : 'badge-ol'}">${r.source === 'google' ? 'Google' : 'Open Lib'}</span>
+                </div>`;
+            }).join('');
+            dropdown.style.display = 'block';
+        }
+
+        document.addEventListener('keydown', e => {
+            if ($('search-dropdown').style.display !== 'block' || currentResults.length === 0) return;
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                highlightedIndex = Math.min(highlightedIndex + 1, currentResults.length - 1);
+                updateHighlight();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                highlightedIndex = Math.max(highlightedIndex - 1, 0);
+                updateHighlight();
+            } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+                e.preventDefault();
+                selectResult(highlightedIndex);
+            } else if (e.key === 'Escape') {
+                closeDropdown();
+            }
+        });
+
+        function updateHighlight() {
+            document.querySelectorAll('.search-result-item').forEach((el, i) =>
+                el.classList.toggle('highlighted', i === highlightedIndex));
+        }
+
+        function closeDropdown() {
+            $('search-dropdown').style.display = 'none';
+            currentResults = [];
+            highlightedIndex = -1;
+        }
+
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.search-wrapper')) closeDropdown();
+        });
+
+        // ---------------------------------------------------------------
+        // 3. FILL THE FORM
+        // ---------------------------------------------------------------
+        function selectResult(index) {
+            const r = currentResults[index];
+            if (!r) return;
+            closeDropdown();
+            $('search-input').value = r.title;
+            fillForm(r);
+            if (!r.cover && r.isbn) tryOpenLibraryCover(r.isbn);
+        }
+
+        function enterManually() {
+            closeDropdown();
+            fillForm({ title: $('search-input').value.trim() });
+            $('f-title').focus();
+        }
+
+        function fillForm(r) {
+            $('f-title').value  = r.title  || '';
+            $('f-author').value = r.author || '';
+            $('f-cover').value  = r.cover  || '';
+            $('f-pages').value  = r.pages  || '';
+            $('f-year').value   = r.year   || '';
+            $('f-isbn').value   = r.isbn   || '';
+            $('f-genres').value = (r.genres || []).join(', ');
+            if (!$('f-date').value) $('f-date').value = todayIso();
+            $('details').style.display = 'block';
+            updateCoverPreview();
+            syncChips();
+            setStatus('');
+        }
+
+        // Google had no cover: see if Open Library has one for this ISBN
+        function tryOpenLibraryCover(isbn) {
+            const url = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+            const probe = new Image();
+            probe.onload = () => {
+                if (probe.naturalWidth > 1 && !$('f-cover').value) {
+                    $('f-cover').value = url;
+                    updateCoverPreview();
+                }
+            };
+            probe.src = `${url}?default=false`;
+        }
+
+        function updateCoverPreview() {
+            const url = $('f-cover').value.trim();
+            const box = $('cover-box');
+            if (!url) { box.textContent = 'No cover'; return; }
+            const img = document.createElement('img');
+            img.alt = '';
+            img.onerror = () => { box.textContent = 'Cover link not loading'; };
+            img.src = url;
+            box.replaceChildren(img);
+        }
+
+        // Genre chips
+        function currentGenres() {
+            return $('f-genres').value.split(',').map(s => s.trim()).filter(Boolean);
+        }
+
+        function renderChips() {
+            $('genre-chips').innerHTML = knownGenres.map(g =>
+                `<button type="button" class="chip" data-genre="${escapeHtml(g)}">${escapeHtml(g)}</button>`).join('');
+            syncChips();
+        }
+
+        function syncChips() {
+            const on = new Set(currentGenres());
+            document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', on.has(c.dataset.genre)));
+        }
+
+        $('genre-chips').addEventListener('click', e => {
+            const chip = e.target.closest('.chip');
+            if (!chip) return;
+            const g = chip.dataset.genre;
+            const list = currentGenres();
+            const next = list.includes(g) ? list.filter(x => x !== g) : [...list, g];
+            $('f-genres').value = next.join(', ');
+            syncChips();
+        });
+
+        // ---------------------------------------------------------------
+        // 4. SAVE TO books.json VIA GITHUB
+        // ---------------------------------------------------------------
+        async function addBookToSite() {
+            const title = $('f-title').value.trim();
+            const dateVal = $('f-date').value;
+            if (!title)   { setStatus('Title is required.', 'error'); return; }
+            if (!dateVal) { setStatus('Date read is required.', 'error'); return; }
+
+            const [yyyy, mm, dd] = dateVal.split('-').map(Number);
+            const dateDisplay = new Date(yyyy, mm - 1, dd)
+                .toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const newEntry = {
+                title,
+                author:         $('f-author').value.trim(),
+                date_display:   dateDisplay,
+                date_sort:      dateVal,
+                review:         $('f-review').value.trim(),
+                rating:         $('f-rating').value,
+                cover:          $('f-cover').value.trim(),
+                pages:          $('f-pages').value.trim(),
+                year_published: $('f-year').value.trim(),
+                genres:         [...new Set(currentGenres())],
+                isbn:           $('f-isbn').value.replace(/[^0-9X]/gi, '').toUpperCase(),
+            };
+
+            const btn = $('add-btn');
+            btn.disabled = true;
+            setStatus('Saving to GitHub…', 'loading');
+
+            try {
+                const api = `https://api.github.com/repos/${GITHUB_REPO}/contents/${BOOKS_FILE}`;
+                const headers = { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github+json' };
+
+                const getRes = await fetch(api, { headers, cache: 'no-store' });
+                if (!getRes.ok) throw new Error(getRes.status === 401 ? 'GitHub token rejected.' : `GitHub read failed (${getRes.status}).`);
+                const fileData = await getRes.json();
+                const books = JSON.parse(base64ToText(fileData.content));
+
+                // build_data.py matches books by title, so keep titles unique
+                if (books.some(b => b.title === newEntry.title)) {
+                    setStatus(`"${newEntry.title}" is already on the list.`, 'error');
+                    return;
+                }
+
+                const updated = [...books, newEntry].sort((a, b) => b.date_sort.localeCompare(a.date_sort));
+
+                const putRes = await fetch(api, {
+                    method: 'PUT',
+                    headers: { ...headers, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: `Add book: ${newEntry.title} (${dateVal})`,
+                        content: textToBase64(JSON.stringify(updated, null, 4) + '\n'),
+                        sha: fileData.sha,
+                    }),
+                });
+                if (!putRes.ok) {
+                    const err = await putRes.json().catch(() => ({}));
+                    throw new Error(err.message || `GitHub save failed (${putRes.status}).`);
+                }
+
+                setStatus(`✓ "${newEntry.title}" added! The live site updates in about a minute.`, 'success');
+                resetForm();
+            } catch (e) {
+                setStatus(`Error: ${e.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        function base64ToText(b64) {
+            const bytes = Uint8Array.from(atob(b64.replace(/\n/g, '')), c => c.charCodeAt(0));
+            return new TextDecoder('utf-8').decode(bytes);
+        }
+
+        function textToBase64(text) {
+            const bytes = new TextEncoder().encode(text);
+            let bin = '';
+            for (let i = 0; i < bytes.length; i += 0x8000) {
+                bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+            }
+            return btoa(bin);
+        }
+
+        // ---------------------------------------------------------------
+        // HELPERS
+        // ---------------------------------------------------------------
+        function resetForm() {
+            $('search-input').value = '';
+            ['f-title', 'f-author', 'f-cover', 'f-pages', 'f-year', 'f-isbn', 'f-genres', 'f-review']
+                .forEach(id => { $(id).value = ''; });
+            $('f-rating').value = '4';
+            $('f-date').value = todayIso();
+            $('details').style.display = 'none';
+            updateCoverPreview();
+            syncChips();
+        }
+
+        function todayIso() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function setStatus(msg, type) {
+            const el = $('status-msg');
+            el.className = type || '';
+            el.innerText = msg;
+            el.style.display = msg ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
