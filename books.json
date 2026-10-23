@@ -1,5 +1,20 @@
 [
     {
+        "title": "Russia：A 1,000-Year Chronicle of the Wild East",
+        "author": "Martin Sixsmith",
+        "date_display": "April 17, 2026",
+        "date_sort": "2026-04-17",
+        "review": "",
+        "rating": "4",
+        "cover": "https://books.google.com/books/content?id=CfnHzGVz5C4C&printsec=frontcover&img=1&zoom=0&source=gbs_api",
+        "pages": "652",
+        "year_published": "2011",
+        "genres": [
+            "History"
+        ],
+        "isbn": "9781446416884"
+    },
+    {
         "title": "The Politics of Design: A (Not So) Global Design Manual for Visual Communication",
         "author": "Ruben Pater",
         "date_display": "March 22, 2026",
