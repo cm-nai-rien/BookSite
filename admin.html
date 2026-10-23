@@ -562,7 +562,24 @@
             closeDropdown();
             $('search-input').value = r.title;
             fillForm(r);
-            if (!r.cover && r.isbn) tryOpenLibraryCover(r.isbn);
+            if (r.source === 'google' && r.cover) checkGoogleCover(r);
+            else if (!r.cover && r.isbn) tryOpenLibraryCover(r.isbn);
+        }
+
+        // Google's large cover link often returns an "image not available"
+        // placeholder (575×750) or a cropped strip. If so, try Open Library,
+        // then fall back to Google's small thumbnail.
+        function checkGoogleCover(r) {
+            const probe = new Image();
+            probe.onload = () => {
+                const w = probe.naturalWidth, h = probe.naturalHeight;
+                const bad = (w === 575 && h === 750) || h / w < 1.1;
+                if (!bad || $('f-cover').value !== r.cover) return;
+                $('f-cover').value = r.thumb || '';
+                updateCoverPreview();
+                if (r.isbn) tryOpenLibraryCover(r.isbn, true);
+            };
+            probe.src = r.cover;
         }
 
         function enterManually() {
@@ -587,11 +604,13 @@
         }
 
         // Google had no cover: see if Open Library has one for this ISBN
-        function tryOpenLibraryCover(isbn) {
+        function tryOpenLibraryCover(isbn, replaceThumb = false) {
             const url = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+            const fallback = $('f-cover').value;
             const probe = new Image();
             probe.onload = () => {
-                if (probe.naturalWidth > 1 && !$('f-cover').value) {
+                const current = $('f-cover').value;
+                if (probe.naturalWidth > 1 && (!current || (replaceThumb && current === fallback))) {
                     $('f-cover').value = url;
                     updateCoverPreview();
                 }
