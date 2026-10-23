@@ -348,12 +348,26 @@
         // ---------------------------------------------------------------
         // 1. LOGIN
         // ---------------------------------------------------------------
+        // Pasted keys can carry invisible characters (zero-width spaces, line breaks)
+        // or full-width letters from a Chinese keyboard. Normalize, then drop anything
+        // that isn't plain visible ASCII.
+        function cleanKey(raw) {
+            return raw.normalize('NFKC').replace(/[^\x21-\x7E]/g, '');
+        }
+
         function checkAccess() {
             const pwd = $('password-input').value;
-            const tok = $('token-input').value.trim();
+            const tok = cleanKey($('token-input').value);
+            const err = $('error-msg');
             if (pwd === SECRET_KEY && tok) {
+                if (!/^(github_pat_|ghp_)[A-Za-z0-9_]+$/.test(tok)) {
+                    err.style.display = 'block';
+                    err.innerText = 'That GitHub token looks wrong. It should start with github_pat_ — try copying it again.';
+                    return;
+                }
                 githubToken = tok;
-                googleKey = $('gkey-input').value.trim();
+                $('token-input').value = tok;
+                googleKey = cleanKey($('gkey-input').value);
                 storageSet(sessionStorage, 'adminToken', tok);
                 storageSet(localStorage, 'googleBooksKey', googleKey);
                 $('login-screen').style.display = 'none';
